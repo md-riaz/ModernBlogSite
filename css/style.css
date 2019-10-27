@@ -132,7 +132,7 @@ img {
         -ms-flex-pack: justify;
             justify-content: space-between; }
     .feature-posts_wrapper .feature-post {
-      width: calc(100% / 3 - 10px);
+      width: calc(100% / 3 - 4px);
       height: 359px;
       background-color: #fdf9f2;
       padding: 26px;
@@ -166,7 +166,6 @@ img {
     .feature-posts_wrapper .post_1 {
       background-image: url(../img/feature_posts/feature_post_1.jpg); }
     .feature-posts_wrapper .post_2 {
-      margin: 0 5px;
       background-image: url(../img/feature_posts/feature_post_2.jpg); }
     .feature-posts_wrapper .post_3 {
       background-image: url(../img/feature_posts/feature_post_3.jpg); }

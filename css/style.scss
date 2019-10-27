@@ -161,7 +161,7 @@ img {
         justify-content: space-between;
 
         .feature-post {
-            width: calc(100% / 3 - 10px);
+            width: calc(100% / 3 - 4px);
             height: 359px;
             background-color: #fdf9f2;
             padding: 26px;
@@ -208,7 +208,6 @@ img {
         }
 
         .post_2 {
-            margin: 0 5px;
             background-image: url(../img/feature_posts/feature_post_2.jpg);
         }
 
