@@ -140,6 +140,10 @@ img {
 
         .close {
             display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: var(--clr_Sienna);
+            color: #ffffff;
         }
     }
 
@@ -852,40 +856,41 @@ img {
             right: 0;
             transform: scaleX(0);
             transform-origin: right;
-        }
-
-        .main-nav.open {
-            user-select: auto;
-            visibility: visible;
-            opacity: 1;
             height: 100vh;
             top: 0;
             overflow-x: auto;
             width: 300px;
             z-index: 2;
             background-color: #fff;
+
+            a {
+                margin: 0;
+            }
+        }
+
+        nav {
+            height: 100vh;
+        }
+
+        ul.menu {
+            display: block;
+            text-align: center;
+
+            li {
+                padding: 10px 25px;
+            }
+        }
+
+        .main-nav.open {
+            user-select: auto;
+            visibility: visible;
+            opacity: 1;
             transform: scaleX(1);
 
             .close {
                 display: block;
-                text-align: center;
-                padding: 20px;
-                background-color: var(--clr_Sienna);
-                color: #ffffff;
             }
 
-            nav {
-                height: 100vh;
-            }
-
-            ul.menu {
-                display: block;
-                text-align: center;
-
-                li {
-                    padding: 10px 25px;
-                }
-            }
         }
     }
 }
