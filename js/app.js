@@ -46,11 +46,13 @@
                     margin: 0
                 },
                 600: {
-                    items: 2
+                    items: 2,
+                    nav: true
                 },
                 1024: {
                     items: 3,
-                    autoplay: false
+                    autoplay: false,
+                    nav: true
                 }
             }
         });

@@ -839,4 +839,12 @@ img {
 @media (max-width: 360px) {
   .logo-container {
     font-size: 50px; } }
+
+.owl-theme .owl-nav {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-transform: translatey(-215px);
+          transform: translatey(-215px);
+  color: white; }
 /*# sourceMappingURL=style.css.map */
