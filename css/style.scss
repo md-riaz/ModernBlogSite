@@ -1001,7 +1001,7 @@ img {
             display: block;
             padding-top: 20px;
 
-            li {
+            &>li {
                 padding: 10px 25px;
             }
         }
@@ -1011,6 +1011,10 @@ img {
             visibility: visible;
             opacity: 1;
             right: 0;
+        }
+
+        .menu-item {
+            padding: 0 10px;
         }
     }
 

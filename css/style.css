@@ -794,7 +794,7 @@ img {
   .header .main-nav ul.menu {
     display: block;
     padding-top: 20px; }
-    .header .main-nav ul.menu li {
+    .header .main-nav ul.menu > li {
       padding: 10px 25px; }
   .header .main-nav.open {
     -webkit-user-select: auto;
@@ -803,7 +803,9 @@ img {
             user-select: auto;
     visibility: visible;
     opacity: 1;
-    right: 0; } }
+    right: 0; }
+  .header .menu-item {
+    padding: 0 10px; } }
 
 @media (max-width: 768px) {
   #page-contianer {
