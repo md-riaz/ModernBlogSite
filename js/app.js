@@ -28,7 +28,8 @@
             }
         });
 
-
+        //Iframe 
+        $(".fb_frame").css("display", "block");
         /* 
          * Owl Carosel
          */

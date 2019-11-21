@@ -678,6 +678,9 @@ img {
       .tags .taglist a:hover {
         border-color: var(--clr_SiennaLight); }
 
+.fb_frame {
+  display: none; }
+
 /*
 * Footer Area
 */
