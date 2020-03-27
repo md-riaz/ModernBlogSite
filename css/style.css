@@ -888,94 +888,81 @@ textarea {
     margin: auto; } }
 
 @media (max-width: 900px) {
-  .header {
-    margin-top: 0;
-    position: fixed;
-    top: 0;
-    z-index: 10;
-    width: 100%; }
-    .header_inside {
-      padding: 0px 5px; }
-    .header .logo-container {
-      margin: 0;
-      position: relative;
-      z-index: 9;
-      width: calc(100% - 30px); }
-      .header .logo-container a {
-        font-size: 0.5em; }
-    .header .menuBar {
+  .header_inside {
+    background-color: transparent; }
+  .header .menuBar {
+    display: block; }
+  .header .main-nav,
+  .header .social {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    position: absolute;
+    top: 60px;
+    right: 12px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    -webkit-transform: translate(0, 20px);
+            transform: translate(0, 20px); }
+  .header .social-open .social {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+    .header .social-open .social a {
       display: block; }
-    .header .main-nav,
-    .header .social {
-      -webkit-user-select: none;
-         -moz-user-select: none;
-          -ms-user-select: none;
-              user-select: none;
-      visibility: hidden;
-      opacity: 0;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column;
-      -webkit-box-align: end;
-          -ms-flex-align: end;
-              align-items: flex-end;
-      position: absolute;
-      top: 60px;
-      right: 12px;
-      -webkit-transition: 0.5s;
-      transition: 0.5s;
-      -webkit-transform: translate(0, 20px);
-              transform: translate(0, 20px); }
-    .header .social-open .social {
-      opacity: 1;
-      visibility: visible;
-      -webkit-transform: translate(0, 0);
-              transform: translate(0, 0); }
-      .header .social-open .social a {
-        display: block; }
-    .header .navigation-container {
-      min-height: 100px; }
-    .header .social_btn {
-      display: block;
-      cursor: pointer; }
-    .header .social-open .social_btn {
-      background-color: var(--clr_Sienna);
-      color: #fff; }
-    .header .main-nav {
-      position: fixed;
-      right: -300px;
-      -webkit-transform-origin: right;
-              transform-origin: right;
-      height: 100vh;
-      top: -20px;
-      overflow-x: auto;
-      width: 300px;
-      z-index: 2;
-      background-color: #fff;
-      -webkit-transition: 1s;
-      transition: 1s; }
-      .header .main-nav .close {
-        display: block; }
-      .header .main-nav a {
-        margin: 0; }
-    .header nav {
-      height: 100vh; }
-    .header .main-nav ul.menu {
-      display: block;
-      padding-top: 20px; }
-      .header .main-nav ul.menu > li {
-        padding: 10px 25px; }
-    .header .main-nav.open {
-      -webkit-user-select: auto;
-         -moz-user-select: auto;
-          -ms-user-select: auto;
-              user-select: auto;
-      visibility: visible;
-      opacity: 1;
-      right: 0; }
-    .header .menu-item {
-      padding: 0 10px; }
+  .header .navigation-container {
+    min-height: 100px; }
+  .header .social_btn {
+    display: block;
+    cursor: pointer; }
+  .header .social-open .social_btn {
+    background-color: var(--clr_Sienna);
+    color: #fff; }
+  .header .main-nav {
+    position: fixed;
+    right: -300px;
+    -webkit-transform-origin: right;
+            transform-origin: right;
+    height: 100vh;
+    top: -20px;
+    overflow-x: auto;
+    width: 300px;
+    z-index: 2;
+    background-color: #fff;
+    -webkit-transition: 1s;
+    transition: 1s; }
+    .header .main-nav .close {
+      display: block; }
+    .header .main-nav a {
+      margin: 0; }
+  .header nav {
+    height: 100vh; }
+  .header .main-nav ul.menu {
+    display: block;
+    padding-top: 20px; }
+    .header .main-nav ul.menu > li {
+      padding: 10px 25px; }
+  .header .main-nav.open {
+    -webkit-user-select: auto;
+       -moz-user-select: auto;
+        -ms-user-select: auto;
+            user-select: auto;
+    visibility: visible;
+    opacity: 1;
+    right: 0; }
+  .header .menu-item {
+    padding: 0 10px; }
   #main-content {
     margin-top: 90px; } }
 
