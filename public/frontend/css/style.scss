@@ -79,6 +79,9 @@ img {
   color: #fff;
   cursor: pointer;
   transition: 0.2s;
+  width: 100%;
+  text-transform: uppercase;
+  font: var(--bold) 0.875em var(--Raleway);
 
   &:hover {
     background-color: var(--clr_nearBlack);
@@ -165,7 +168,7 @@ img {
         }
       }
     }
-    .multi-nav a::after {
+    .multi-nav > a::after {
       position: absolute;
       content: "\f0d7";
       font: var(--bold) 11px/29px "Font Awesome 5 Free";
@@ -445,8 +448,6 @@ img {
 */
 
 .post-list {
-  width: calc(100% - 365px);
-
   .posts {
     position: relative;
     margin-bottom: 35px;
@@ -707,12 +708,6 @@ img {
         text-transform: uppercase;
         font: var(--reguler) 13px var(--OpenSans);
       }
-    }
-
-    .flat-btn {
-      width: 100%;
-      text-transform: uppercase;
-      font: var(--bold) 0.875em var(--Raleway);
     }
   }
 }
@@ -1251,4 +1246,95 @@ textarea {
   justify-content: space-between;
   transform: translatey(-215px);
   color: white;
+}
+
+/*
+* Admin Panel styles
+*/
+$bright-red: #b30015;
+$dark-blue: #2a00b3;
+$deep-cerulean: #0077b3;
+$bondi-blue: #00b0b3;
+$heliotrope: #8a7dff;
+$silver-chalice: #a6a6a6;
+$scorpion: #595959;
+$tundora: #444;
+$mine-shaft: #363636;
+$cod-gray: #111;
+.buttons {
+  margin-bottom: 100px;
+  li {
+    width: 150px;
+    margin-right: 2px;
+    &:nth-child(1) {
+      background-color: $heliotrope;
+    }
+    &:nth-child(2) {
+      background-color: $bright-red;
+    }
+    &:nth-child(3) {
+      background-color: $dark-blue;
+    }
+    &:nth-child(4) {
+      background-color: $deep-cerulean;
+    }
+    &:nth-child(5) {
+      background-color: $bondi-blue;
+    }
+    button {
+      background-color: inherit;
+    }
+  }
+}
+.alert-danger {
+  background-color: #f1394f;
+  padding: 10px 5px;
+  margin: 10px 0;
+}
+
+.table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.btn {
+  display: inline-block;
+  color: #ffffff;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: 2px;
+  opacity: 0.9;
+  cursor: pointer;
+  &:nth-child(1) {
+    background-color: $heliotrope;
+  }
+  &:nth-child(2) {
+    background-color: $tundora;
+  }
+  &:nth-child(3) {
+    background-color: $bright-red;
+  }
+}
+.btn-success {
+  color: #fff;
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
 }
