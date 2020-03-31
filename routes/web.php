@@ -21,15 +21,7 @@ Route::get('/', function () {
 Route::get('/admin/main', 'FrontendController@main')->name('admin.page');
 
 // Categories
-Route::get('/add/category', 'CategoryController@AddCategory')->name('add.category');
-Route::get('/all/category', 'CategoryController@AllCategory')->name('all.category');
-
-Route::get('/view/category/{id}', 'CategoryController@ViewCategory');
-Route::get('/edit/category/{id}', 'CategoryController@EditCategory');
-Route::post('/update/category/{id}', 'CategoryController@UpdateCategory');
-Route::get('/delete/category/{id}', 'CategoryController@DeleteCategory');
-
-Route::post('store/category', 'CategoryController@StoreCategory')->name('store.category');
+Route::resource('category', 'CategoryController');
 
 // Post 
-Route::get('/write/post', 'PostController@WritePost')->name('write.post');
+Route::resource('post', 'PostController');

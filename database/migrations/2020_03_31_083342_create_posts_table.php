@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Posts extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,10 @@ class Posts extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
             $table->string('title');
+            $table->string('category_id');
+            $table->string('post_img')->nullable();
             $table->string('details');
-            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

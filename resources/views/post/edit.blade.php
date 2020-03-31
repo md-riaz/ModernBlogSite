@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('siteTitle')
-Edit Category
+Edit Post
 @endsection
 
 @section('content')
@@ -14,20 +14,33 @@ Edit Category
 <div class="container">
     <div class="write-post">
         <div class="post-comments">
-            <h2 class="comments-title">Edit an existing category.</h2>
+            <h2 class="comments-title">Edit an existing post.</h2>
             <div class="comment-respond">
-                <form action="{{ url('category/'.$category->id) }}" method="post">
+                <form action="{{ url('post/'.$post->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="d_flex comment-double">
                         <div class="input-field">
-                            <label for="">Category Name</label>
-                            <input type="text" name="name" value="{{ $category->name }}" aria-required="true" />
+                            <input type="text" name="title" value="{{$post->title}}" aria-required="true" required />
                         </div>
                         <div class="input-field">
-                            <label for="">Category Slug</label>
-                            <input type="text" name="slug" value="{{ $category->slug }}" aria-required="true" />
+                            <select name="category_id">
+                                <option value="" disabled selected>Select a Category</option>
+                                @foreach ($categories as $item)
+                                <option value="{{ $item->id }}" {{ $item->id==$post->category_id ? 'selected' : '' }}>
+                                    {{ $item->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                    </div>
+                    <div class="input-field">
+                        <input type="file" name="post_img">
+                        <label for="">Current Image</label><br>
+                        <img src="{{ asset('public/frontend/postimg/'.$post->post_img) }}" alt="" width="120">
+                        <input type="hidden" name="old_img" value="{{$post->post_img}}">
+                    </div>
+                    <div class=" input-field">
+                        <textarea name="details" aria-required="true" required>{{$post->details}}</textarea>
                     </div>
 
                     {{-- Displaying The Validation Errors --}}

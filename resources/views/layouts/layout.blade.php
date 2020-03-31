@@ -334,9 +334,9 @@
             @endif
 
             // Sweet alert 2 code===============================================
+
             $(document).on("click", "#delete", function (e) {
                 e.preventDefault();
-                var link = $(this).attr("href");
                 const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
                     confirmButton: 'btn btn-danger',
@@ -360,7 +360,12 @@
                         'Your file has been deleted.',
                         'success'
                     );
-                    window.location.href = link;
+                    // Get action url from data attribute
+                    $action = $(this).data("action");
+                    //  Set delete form action attribute to that url
+                    $("#deleteForm").attr('action', $action) ;
+                    // Submit the form
+                    $("#deleteForm").submit();
                 } else if (
                     /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel

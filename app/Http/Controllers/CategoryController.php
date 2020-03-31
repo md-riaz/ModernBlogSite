@@ -2,35 +2,52 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    public function AddCategory()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $categories = Category::all();
+        return view('category.allcategory', compact('categories'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         return view('category.addcategory');
     }
-    public function AllCategory()
-    {
-        $categories = DB::table('categories')->get();
-        return view('category.allcategory')->with('categories', $categories);
-    }
-    public function StoreCategory(Request $request)
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         // Validate input data
         $validatedData = $request->validate([
-            'name' => 'required|unique:categories|max:25|min:4',
-            'slug' => 'required|unique:categories|max:25|min:4'
+            'name' => 'required|unique:categories|max:25|min:4'
         ]);
+        $slug = strtolower(str_replace(" ", "-", $request->name));
+        // Create a new instance of Category model
+        $insert_category = new Category;
+        $insert_category->name = $request->name;
+        $insert_category->slug = $slug;
+        $insert_category->save();
 
-        // Associative array of inputed data with $request parameter 
-        $data = [
-            'name' => $request->name,
-            'slug' => $request->slug
-        ];
-        // Make a query builder and insert data
-        $insert_category = DB::table('categories')->insert($data);
         // If success then return with $notification message 
         if ($insert_category) {
             $notification = [
@@ -38,7 +55,7 @@ class CategoryController extends Controller
                 'alert-type' => 'success'
             ];
 
-            return redirect()->route('all.category')->with($notification);
+            return redirect()->back()->with($notification);
         } else {
             $notification = [
                 'message' => 'Error Occurred!',
@@ -48,38 +65,49 @@ class CategoryController extends Controller
             return redirect()->back()->with($notification);
         }
     }
-    public function ViewCategory($id)
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        // Select first data from a table where id is $id
-        $category = DB::table('categories')->where('id', $id)->first();
+        $category = Category::find($id);
         return view('category.viewcategory', compact('category'));
     }
-    public function DeleteCategory($id)
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        // Delete data from a table where id is $id
-        $delete__category = DB::table('categories')->where('id', $id)->delete();
-        if ($delete__category) {
-            $notification = [
-                'message' => 'Successfully Category Deleted',
-                'alert-type' => 'success'
-            ];
-        }
-        return redirect()->back()->with($notification);
+        $category = Category::findOrFail($id);
+        return view('category.editcategory', compact('category'));
     }
-    public function EditCategory($id)
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
-        // Select first data from a table where id is $id
-        $category = DB::table('categories')->where('id', $id)->first();
-        return view('category.editcategory')->with('category', $category);
-        // return json_encode($category);
-    }
-    public function UpdateCategory(Request $request, $id)
-    {
-        $data = [
-            'name' => $request->name,
-            'slug' => $request->slug
-        ];
-        $update = DB::table('categories')->where('id', $id)->update($data);
+        $validatedData = $request->validate([
+            'name' => 'unique:categories|max:25|min:4',
+            'slug' => 'unique:categories|max:25|min:4'
+        ]);
+
+        $update = Category::findOrFail($id);
+        $update->name = $request->name;
+        $update->slug = $request->slug;
+        $update->save();
 
         // If success then return with $notification message 
         if ($update) {
@@ -87,8 +115,7 @@ class CategoryController extends Controller
                 'message' => 'Successfully Category Updated',
                 'alert-type' => 'success'
             ];
-
-            return redirect()->route('all.category')->with($notification);
+            return redirect()->to('/category')->with($notification);
         } else {
             $notification = [
                 'message' => 'Error Occurred!',
@@ -97,5 +124,27 @@ class CategoryController extends Controller
             // Return to previews page
             return redirect()->back()->with($notification);
         }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
+        if ($category) {
+            $notification = [
+                'message' => 'Successfully Category Deleted',
+                'alert-type' => 'success'
+            ];
+        }
+        return redirect()->back()->with($notification);
     }
 }

@@ -770,7 +770,8 @@ img {
     left: -15%; }
 
 .post_img {
-  width: 100%; }
+  width: 100%;
+  text-align: center; }
 
 .entry-content {
   padding: 25px 5px; }
@@ -830,7 +831,8 @@ img {
 
 .post-comments .comment-notes {
   font: var(--light) 0.8em/1 var(--OpenSans);
-  color: var(--clr_Grey); }
+  color: var(--clr_Grey);
+  margin-bottom: 15px; }
 
 .input-field {
   position: relative;
@@ -1061,7 +1063,7 @@ textarea {
 td,
 th {
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 8px; }
 
 tr:nth-child(even) {
@@ -1076,13 +1078,13 @@ tr:nth-child(even) {
   font-size: 16px;
   margin-left: 2px;
   opacity: 0.9;
+  outline: none;
+  border: none;
   cursor: pointer; }
   .btn:nth-child(1) {
     background-color: #8a7dff; }
   .btn:nth-child(2) {
     background-color: #444; }
-  .btn:nth-child(3) {
-    background-color: #b30015; }
 
 .btn-success {
   color: #fff;
@@ -1093,4 +1095,10 @@ tr:nth-child(even) {
   color: #fff;
   background-color: #dc3545 !important;
   border-color: #dc3545 !important; }
+
+td form {
+  display: inline-block; }
+
+*[type="submit"] {
+  cursor: pointer; }
 /*# sourceMappingURL=style.css.map */
