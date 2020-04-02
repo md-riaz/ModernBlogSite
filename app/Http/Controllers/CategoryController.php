@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Category;
+use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -15,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(10);
         return view('category.allcategory', compact('categories'));
     }
 
@@ -46,6 +48,8 @@ class CategoryController extends Controller
         $insert_category = new Category;
         $insert_category->name = $request->name;
         $insert_category->slug = $slug;
+        $insert_category->user_id = Auth::user()->id;
+
         $insert_category->save();
 
         // If success then return with $notification message 
@@ -107,6 +111,8 @@ class CategoryController extends Controller
         $update = Category::findOrFail($id);
         $update->name = $request->name;
         $update->slug = $request->slug;
+        $update->user_id = Auth::user()->id;
+
         $update->save();
 
         // If success then return with $notification message 

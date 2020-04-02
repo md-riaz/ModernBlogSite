@@ -16,33 +16,34 @@ All Posts
     <thead>
         <th>SL</th>
         <th>Post Title</th>
+        <th>Author</th>
         <th>Category</th>
         <th>Image</th>
         <th>Action</th>
     </thead>
+    {{$posts}}
     <tbody>
-        @php
-        $count = 1;
-        @endphp
         @foreach ($posts as $row)
         <tr>
-            <td>{{ $count++ }}</td>
+            <td>{{ $posts->firstItem() + $loop->index }}</td>
             <td> {{substr($row->title,0, 24) }}...</td>
-            <td>{{ $row->category_id }}</td>
-            <td><img src="{{ asset('public/frontend/postimg/'.$row->post_img) }}" alt="" width="80" height="50"></td>
+            <td>{{ $row->user->name }}</td>
+            <td>{{ $row->category->name }}</td>
+            <td><img src="{{$row->post_img}}" alt="" width="80" height="50"></td>
             <td>
-                <a href="{{ url('post/'. $row->id.'/edit') }}" class="btn">Edit</a>
-                <a href="{{ url('post/'. $row->id) }}" class="btn">View</a>
+                <a href="{{ url('post/'. $row->id.'/edit') }}" class="btn table-primary"><i class="far fa-edit"></i></a>
+                <a href="{{ url('post/'. $row->id) }}" class="btn text-secondary"><i class="far fa-eye"></i></a>
 
                 <form action="" id="deleteForm" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger" id="delete"
-                        data-action="{{ url('post/'. $row->id) }}">Delete</button>
+                    <button type="submit" class="btn text-danger" id="delete"
+                        data-action="{{ url('post/'. $row->id) }}"><i class="fas fa-trash"></i></button>
                 </form>
             </td>
         </tr>
         @endforeach
     </tbody>
+    {{$posts->links()}}
 </table>
 @endsection

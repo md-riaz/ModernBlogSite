@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\Category;
+use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -16,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::all();
         return view('post.all', compact('posts'));
     }
 
@@ -51,7 +50,6 @@ class PostController extends Controller
         $insert_post->title = $request->title;
         $insert_post->category_id = $request->category_id;
         $insert_post->details = $request->details;
-        $insert_post->user_id = Auth::user()->id;
         $image = $request->file('post_img');
 
         if ($image) {
@@ -129,7 +127,6 @@ class PostController extends Controller
         $update_post->title = $request->title;
         $update_post->category_id = $request->category_id;
         $update_post->details = $request->details;
-        $update_post->user_id = Auth::user()->id;
         $image = $request->file('post_img');
         if ($image) {
             $image_name = hexdec(uniqid());

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('siteTitle')
-All Category
+Admin Panel
 @endsection
 
 @section('content')
@@ -15,35 +15,32 @@ All Category
 <table class="table">
     <thead>
         <th>SL</th>
-        <th>Category Name</th>
-        <th>Slug</th>
-        <th>Author</th>
+        <th>User Name</th>
+        <th>Email</th>
         <th>Created at</th>
         <th>Action</th>
     </thead>
     <tbody>
-        @foreach ($categories as $row)
+        @foreach ($users as $user)
         <tr>
-            <td>{{ $categories->firstItem() + $loop->index }}</td>
-            <td>{{ $row->name }}</td>
-            <td>{{ $row->slug }}</td>
-            <td>{{ $row->user->name }}</td>
-            <td>{{ $row->created_at->format('dS F, Y') }}</td>
+            <td>{{ $users->firstItem() + $loop->index }}</td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ $user->created_at->format('dS F, Y') }}</td>
             <td>
-                <a href="{{ url('category/'. $row->id.'/edit') }}" class="btn text-primary"><i
-                        class="far fa-edit"></i></a>
-                <a href="{{ url('category/'. $row->id) }}" class="btn text-secondary"><i class="far fa-eye"></i></a>
+                <a href="{{ url('/'. $user->id.'/edit') }}" class="btn">Edit</a>
+                <a href="{{ url('/'. $user->id) }}" class="btn">View</a>
 
                 <form action="" id="deleteForm" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn text-danger" id="delete"
-                        data-action="{{ url('category/'. $row->id) }}"><i class="fas fa-trash"></i></button>
+                    <button type="submit" class="btn btn-danger" id="delete"
+                        data-action="{{ url('/'. $user->id) }}">Delete</button>
                 </form>
             </td>
         </tr>
         @endforeach
     </tbody>
-    {{$categories->links()}}
+    {{$users->links()}}
 </table>
 @endsection
