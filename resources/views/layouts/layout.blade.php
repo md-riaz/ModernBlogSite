@@ -112,7 +112,7 @@
 
             <section class="Contents">
                 <div class="container d_flex">
-                    <div class="innerContainer" style="width: calc(100% - 365px);">
+                    <div class="innerContainer">
 
                         @yield('content')
 

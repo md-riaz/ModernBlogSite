@@ -4,7 +4,7 @@ Admin Panel
 @endsection
 
 @section('content')
-<ul class="buttons d_flex">
+<ul class="buttons d_flex justify-content-center">
     <li><a href="{{ URL::to('category') }}"><button class="flat-btn">all category</button></a></li>
     <li><a href="{{ URL::to('category/create') }}"><button class="flat-btn">add category</button></a></li>
     <li><a href="{{ URL::to('post') }}"><button class="flat-btn">all posts</button></a></li>
@@ -12,7 +12,7 @@ Admin Panel
 </ul>
 <hr>
 
-<table class="table">
+<table class="table table-responsive">
     <thead>
         <th>SL</th>
         <th>User Name</th>
@@ -28,14 +28,14 @@ Admin Panel
             <td>{{ $user->email }}</td>
             <td>{{ $user->created_at->format('dS F, Y') }}</td>
             <td>
-                <a href="{{ url('/'. $user->id.'/edit') }}" class="btn">Edit</a>
-                <a href="{{ url('/'. $user->id) }}" class="btn">View</a>
+                <a href="{{ url('/'. $user->id.'/edit') }}" class="btn table-primary"><i class="far fa-edit"></i></a>
+                <a href="{{ url('/'. $user->id) }}" class="btn text-secondary"><i class="far fa-eye"></i></a>
 
                 <form action="" id="deleteForm" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger" id="delete"
-                        data-action="{{ url('/'. $user->id) }}">Delete</button>
+                    <button type="submit" class="btn text-danger" id="delete" data-action="{{ url('/'. $user->id) }}"><i
+                            class="fas fa-trash"></i></button>
                 </form>
             </td>
         </tr>

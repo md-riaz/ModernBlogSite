@@ -909,6 +909,10 @@ img {
     padding: 10px;
   }
 }
+.innerContainer {
+  padding: 50px 5px;
+  width: calc(100% - 310px);
+}
 /*
 * Post Details Page
 */
@@ -1060,7 +1064,8 @@ textarea {
     padding-top: 20px;
   }
 
-  .post-list {
+  .post-list,
+  .innerContainer {
     width: 90%;
     margin: auto;
   }

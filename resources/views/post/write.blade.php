@@ -4,7 +4,7 @@ Write Post
 @endsection
 
 @section('content')
-<ul class="buttons d_flex">
+<ul class="buttons d_flex justify-content-center">
     <li><a href="{{ URL::to('category') }}"><button class="flat-btn">all category</button></a></li>
     <li><a href="{{ URL::to('category/create') }}"><button class="flat-btn">add category</button></a></li>
     <li><a href="{{ URL::to('post') }}"><button class="flat-btn">all posts</button></a></li>
