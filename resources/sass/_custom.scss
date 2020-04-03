@@ -807,6 +807,9 @@ img {
       text-transform: capitalize;
     }
   }
+  .flat-btn {
+    width: 50px;
+  }
 }
 
 .banner {
@@ -1038,10 +1041,6 @@ textarea {
 * Responsive media Queries
 */
 @media (max-width: 1200px) {
-  .post-list {
-    width: calc(100% - 310px);
-  }
-
   .feature-posts_wrapper .feature-post {
     min-height: 280px;
   }
@@ -1066,7 +1065,7 @@ textarea {
 
   .post-list,
   .innerContainer {
-    width: 90%;
+    width: 100%;
     margin: auto;
   }
 
@@ -1324,4 +1323,9 @@ td {
 a:not([href]) {
   color: white;
   text-decoration: none;
+}
+
+//Register page
+input#remember {
+  width: 15px;
 }

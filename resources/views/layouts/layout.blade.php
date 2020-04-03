@@ -99,7 +99,7 @@
                 </div>
             </div>
             <div class="logo-container bottom_bar">
-                <a href="#">Noémi</a>
+                <a href="{{ URL::to('/') }}">Noémi Blog</a>
             </div>
         </header>
         <!--   Header Section End -->
@@ -165,12 +165,9 @@
                         <div class="category_section">
                             <h3 class="bottom_bar">categories</h3>
                             <ul>
-                                <li><a href="#">Beauty</a> <span>12</span></li>
-                                <li><a href="#">Health</a> <span>4</span></li>
-                                <li><a href="#">Lifestyle</a> <span>145</span></li>
-                                <li><a href="#">Music</a> <span>28</span></li>
-                                <li><a href="#">Sport</a> <span>62</span></li>
-                                <li><a href="#">Yoga</a> <span>8</span></li>
+                                @foreach (App\Category::all() as $category)
+                                <li class="menu-item"><a href="#">{{ $category->name }}</a> <span>12</span></li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="latest_posts">

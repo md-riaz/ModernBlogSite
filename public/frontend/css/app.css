@@ -11703,6 +11703,10 @@ img {
   text-transform: capitalize;
 }
 
+.search_bar .flat-btn {
+  width: 50px;
+}
+
 .banner .banner_img {
   padding: 20px 0;
 }
@@ -11944,10 +11948,6 @@ textarea {
 */
 
 @media (max-width: 1200px) {
-  .post-list {
-    width: calc(100% - 310px);
-  }
-
   .feature-posts_wrapper .feature-post {
     min-height: 280px;
   }
@@ -11971,7 +11971,7 @@ textarea {
 
   .post-list,
   .innerContainer {
-    width: 90%;
+    width: 100%;
     margin: auto;
   }
 
@@ -12223,5 +12223,9 @@ td form {
 a:not([href]) {
   color: white;
   text-decoration: none;
+}
+
+input#remember {
+  width: 15px;
 }
 
