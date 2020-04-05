@@ -66,5 +66,3 @@ $(".menuBar").click(function (e) {
     });
 })(jQuery)
 
-
-

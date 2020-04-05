@@ -17,11 +17,11 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <!-- Styles -->
-    <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
-    <!-- Scripts -->
-    <script src="{{ asset('public/js/app.js') }}" defer></script>
-
     <link rel="stylesheet" href="{{ asset('public/frontend/css/app.css')}}">
+
+    <!-- Scripts -->
+    {{-- <script src="{{ asset('public/js/app.js') }}" defer></script> --}}
+
 </head>
 
 <body>
@@ -49,7 +49,9 @@
                                 <li class="multi-nav"><a href="#">categories</a>
                                     <ul class="sub-menu">
                                         @foreach (App\Category::all() as $category)
-                                        <li class="menu-item"><a href="#">{{ $category->name }}</a></li>
+                                        <li class="menu-item"><a
+                                                href="{{url('/categories/'.$category->slug)}}">{{ $category->name }}</a>
+                                        </li>
                                         @endforeach
                                     </ul>
                                 </li>
@@ -163,7 +165,9 @@
                             <h3 class="bottom_bar">categories</h3>
                             <ul>
                                 @foreach (App\Category::all() as $category)
-                                <li class="menu-item"><a href="#">{{ $category->name }}</a> <span>12</span></li>
+                                <li class="menu-item"><a
+                                        href="{{url('/categories/'.$category->slug)}}">{{ $category->name }}</a>
+                                    <span>12</span></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -260,6 +264,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
     <script>
         // Toster message code
            @if (Session:: has('message'))

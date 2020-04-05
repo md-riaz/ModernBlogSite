@@ -9,17 +9,18 @@ Home
 <section class="feature-posts">
     <div class="feature-posts_wrapper d_flex feature-post-slider owl-carousel owl-theme">
 
-        <div class="feature-post d_flex item owl-lazy"
-            data-src="{{ asset('public/frontend/img/feature_posts/feature_post_1.jpg')}}">
+
+        @foreach (App\Post::take(9)->latest('updated_at')->get() as $item)
+
+        <div class="feature-post d_flex item owl-lazy" data-src="{{ $item->post_img}}">
             <span class="overlay"></span>
             <div class="feature-post_content d_flex">
                 <div class="categories d_flex">
-                    <a href="#">beauty</a>
-                    <a href="#">health</a>
-                    <a href="#">lifestyle</a>
+                    <a href="{{url('/categories/'.$item->category->slug)}}">{{ $item->category->name}}</a>
+
                 </div>
                 <a class="title">
-                    from grapefruit to lemons to oranges, citrus does you good!
+                    {{ $item->title}}
                 </a>
                 <div class="post_bottom d_flex">
                     <p class="date">june 14,2015</p>
@@ -31,49 +32,8 @@ Home
             </div>
         </div>
 
-        <div class="feature-post d_flex item owl-lazy"
-            data-src="{{ asset('public/frontend/img/feature_posts/feature_post_2.jpg')}}">
-            <span class="overlay"></span>
-            <div class="feature-post_content d_flex">
-                <div class="categories d_flex">
-                    <a href="#">beauty</a>
-                    <a href="#">health</a>
-                    <a href="#">lifestyle</a>
-                </div>
-                <a class="title">
-                    from grapefruit to lemons to oranges, citrus does you good!
-                </a>
-                <div class="post_bottom d_flex">
-                    <p class="date">june 14,2015</p>
-                    <div class="comments d_flex">
-                        <i class="fas fa-comment"></i>
-                        <p>24</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
 
-        <div class="feature-post d_flex item owl-lazy"
-            data-src="{{ asset('public/frontend/img/feature_posts/feature_post_3.jpg')}}">
-            <span class="overlay"></span>
-            <div class="feature-post_content d_flex">
-                <div class="categories d_flex">
-                    <a href="#">beauty</a>
-                    <a href="#">health</a>
-                    <a href="#">lifestyle</a>
-                </div>
-                <a class="title">
-                    from grapefruit to lemons to oranges, citrus does you good!
-                </a>
-                <div class="post_bottom d_flex">
-                    <p class="date">june 14,2015</p>
-                    <div class="comments d_flex">
-                        <i class="fas fa-comment"></i>
-                        <p>24</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="btn-prev"></div>
     <div class="btn-next"></div>
@@ -82,8 +42,7 @@ Home
 @section('content')
 <!--   Main Post Section -->
 <section class="post-list">
-
-    @foreach ($posts as $post)
+    @forelse ($posts as $post)
     <div class="posts">
         <div class="posts_contents_wrapper d_flex">
             <div class="posts_preview_img">
@@ -103,7 +62,7 @@ Home
                     </div>
                 </div>
                 <p class="text_contents">
-                    {!!substr($post->details,0,132)!!}
+                    {!!substr($post->details,0,200)!!}...
                     <br>
                     <a class="read_more" href="{{ url('post/'. $post->id) }}">...</a>
                 </p>
@@ -122,7 +81,9 @@ Home
             </div>
         </div>
     </div>
-    @endforeach
+    @empty
+    <p class="text-center">No articles to show</p>
+    @endforelse
 
     @if ($posts instanceof \Illuminate\Pagination\LengthAwarePaginator))
     <nav class="pagination">

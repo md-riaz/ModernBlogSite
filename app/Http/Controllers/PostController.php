@@ -45,9 +45,11 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:125|min:5',
             'category_id' => 'required|min:1',
-            'post_img' => 'mimes:jpg,jpeg,png |max:1000',
+            'post_img' => 'mimes:jpg,jpeg,png,PNG |max:1000',
             'details' => 'required|max:5000|min:100',
+            // 'tags' => 'required|min:3',
         ]);
+
         // Create a new instance of Post model
         $insert_post = new Post;
         $insert_post->title = $request->title;

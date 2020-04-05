@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('category_id');
+            $table->integer('category_id');
             // this is a foreign key constrain to delete posts associated with a deleted user_id
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('post_img')->nullable();

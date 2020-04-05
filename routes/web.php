@@ -26,3 +26,6 @@ Route::resource('category', 'CategoryController');
 
 // Post 
 Route::resource('post', 'PostController');
+
+// Category Posts
+Route::get('/categories/{slug}', 'IndexController@CategoryPosts');

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700|Mrs+Sheppards|Raleway:300,400,700|Open+Sans:300,400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Baloo+Da+2:400,700&display=swap");
 
 *,
 *::before,
@@ -11,10 +12,10 @@ html {
     * Variables
     */
   //Fonts
-  --JosefinSans: "Josefin Sans", sans-serif;
+  --JosefinSans: "Josefin Sans", "Baloo Da 2";
   --MrsSheppards: "Mrs Sheppards", cursive;
   --Raleway: "Raleway", sans-serif;
-  --OpenSans: "Open Sans", sans-serif;
+  --OpenSans: "Baloo Da 2", "Open Sans";
   --thin: 100;
   --light: 300;
   --reguler: 400;
@@ -34,7 +35,7 @@ body {
   margin: 0;
   padding: 0;
   transition: 0.5s;
-  font-display: swap;
+  font-family: "Baloo Da 2", cursive !important;
   background-color: #fff;
 }
 

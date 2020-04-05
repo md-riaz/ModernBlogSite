@@ -10,7 +10,7 @@
             <div class="post_details d_flex">
                 <div class="posts_title">
                     <div class="categories d_flex">
-                        <a href="#">{{$post->category->name}}</a>
+                        <a href="{{url('/categories/'.$post->category->slug)}}">{{$post->category->name}}</a>
                     </div>
                     <a class="title">
                         {{$post->title}}

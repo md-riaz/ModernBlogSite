@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function posts()
     {
-        return $this->hasMany(Post::class); // Select * from posts where user_id = current user
+        return $this->hasMany(Post::class);
     }
 }

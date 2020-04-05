@@ -34,9 +34,13 @@ Write Post
                     <div class="input-field">
                         <input type="file" name="post_img">
                     </div>
+
                     <div class="input-field">
                         <textarea name="details" placeholder="Post Details *" aria-required="true" required></textarea>
                     </div>
+                    <center class="input-field">
+                        <input type="text" name="tags" data-role="tagsinput" placeholder="Add tags" />
+                    </center>
                     {{-- Displaying The Validation Errors --}}
                     @if ($errors->any())
                     <div class="alert alert-danger">
@@ -57,4 +61,5 @@ Write Post
         </div>
     </div>
 </div>
+
 @endsection
