@@ -99,16 +99,13 @@
                 </div>
             </div>
             <div class="logo-container bottom_bar">
-                <a href="{{ URL::to('/') }}">Noémi Blog</a>
+                <a href="{{ URL::to('/') }}">Riaz Blog</a>
             </div>
         </header>
         <!--   Header Section End -->
 
         <main id="main-content">
             @yield('FeaturePost')
-
-
-
 
             <section class="Contents">
                 <div class="container d_flex">
@@ -149,7 +146,7 @@
                             <button class="flat-btn">subscribe</button>
                         </div>
                         <div class="follow_insta">
-                            <h3 class="bottom_bar">follow@noemi.theme</h3>
+                            <h3 class="bottom_bar">follow@md_riaz___</h3>
                             <div class="photo_grid d_flex">
                                 <img src="{{ asset('public/frontend/img/photo_grid/1.jpg')}}" alt="grid_image">
                                 <img src="{{ asset('public/frontend/img/photo_grid/2.jpg')}}" alt="grid_image">
@@ -174,84 +171,20 @@
                             <h3 class="bottom_bar">recent posts</h3>
 
                             <div class="latest_post_wrapper">
-
+                                @foreach (App\Post::take(5)->latest('created_at')->get() as $item)
                                 <div class="latest_post d_flex">
                                     <div class="latest_post_preview_img">
-                                        <img src="{{ asset('public/frontend/img/Latest/post_1.jpg')}}"
-                                            alt="preview_img">
+                                        <img src="{{ $item->post_img}}" alt="preview_img">
                                     </div>
                                     <div class="posts_desc">
-                                        <p class="date">June 14, 2015
-                                        </p>
+                                        <p class="date">{{ $item->created_at->format('d F, Y')}}</p>
                                         <a href="">
-                                            <h3 class="title">Lorem Ipsum right now.
-                                            </h3>
+                                            <h3 class="title">{{ $item->title}}</h3>
                                         </a>
                                     </div>
                                 </div>
+                                @endforeach
 
-                                <div class="latest_post d_flex">
-                                    <div class="latest_post_preview_img">
-                                        <img src="{{ asset('public/frontend/img/Latest/post_2.jpg')}}"
-                                            alt="preview_img">
-                                    </div>
-                                    <div class="posts_desc">
-                                        <p class="date">June 14, 2015
-                                        </p>
-                                        <a href=""></a>
-                                        <h3 class="title">Lorem Ipsum Dolor
-                                            available.
-                                        </h3></a>
-                                    </div>
-                                </div>
-
-                                <div class="latest_post d_flex">
-                                    <div class="latest_post_preview_img">
-                                        <img src="{{ asset('public/frontend/img/Latest/post_3.jpg')}}"
-                                            alt="preview_img">
-                                    </div>
-                                    <div class="posts_desc">
-                                        <p class="date">June 14, 2015
-                                        </p>
-                                        <a href="">
-                                            <h3 class="title">Lorem Ipsum available
-                                                right now.
-                                            </h3>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="latest_post d_flex">
-                                    <div class="latest_post_preview_img">
-                                        <img src="{{ asset('public/frontend/img/Latest/post_4.jpg')}}"
-                                            alt="preview_img">
-                                    </div>
-                                    <div class="posts_desc">
-                                        <p class="date">June 14, 2015
-                                        </p>
-                                        <a href="">
-                                            <h3 class="title">Lorem Ipsum available
-                                                right now.
-                                            </h3>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="latest_post d_flex">
-                                    <div class="latest_post_preview_img">
-                                        <img src="{{ asset('public/frontend/img/Latest/post_5.jpg')}}"
-                                            alt="preview_img">
-                                    </div>
-                                    <div class="posts_desc">
-                                        <p class="date">June 14, 2015
-                                        </p>
-                                        <a href="">
-                                            <h3 class="title">Lorem Ipsum available
-                                                right now.
-                                            </h3>
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -277,14 +210,9 @@
                         <div class="tags">
                             <h3 class="bottom_bar">tags</h3>
                             <ul class="taglist d_flex">
-                                <li><a href="#">fashion</a></li>
-                                <li><a href="#">music</a></li>
-                                <li><a href="#">lorem tag</a></li>
-                                <li><a href="#">tag</a></li>
-                                <li><a href="#">ipsum tag</a></li>
-                                <li><a href="#">travel</a></li>
-                                <li><a href="#">fashion</a></li>
-                                <li><a href="#">music</a></li>
+                                @foreach (App\Tag::take(10)->latest('created_at')->get() as $tag)
+                                <li><a href="{{url('/')}}?tag={{$tag->name}}">{{$tag->name}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </section>
@@ -296,8 +224,8 @@
 
         <footer id="main-footer">
             <div class="follow_insta">
-                <h3 class="title">follow@noemi.theme</h3>
-                <a class="follow" href="#"><i class="fab fa-instagram"></i>instagram
+                <h3 class="title">follow@md_riaz___</h3>
+                <a class="follow" href="https://www.instagram.com/md_riaz___/"><i class="fab fa-instagram"></i>instagram
                 </a>
                 <div class="photo_grid d_flex">
                     <img src="{{ asset('public/frontend/img/photo_grid/1.jpg')}}" alt="grid_image">
@@ -321,7 +249,7 @@
             </div>
 
             <p class="on_top">on top</p>
-            <p class="copyright">Copyright © 2009–2016 City Blog LLC.</p>
+            <p class="copyright">Copyright © 2009–2016 MD Riaz LLC.</p>
         </footer>
     </div>
 

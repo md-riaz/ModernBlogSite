@@ -83,32 +83,30 @@ Home
 <!--   Main Post Section -->
 <section class="post-list">
 
+    @foreach ($posts as $post)
     <div class="posts">
         <div class="posts_contents_wrapper d_flex">
             <div class="posts_preview_img">
-                <img src="{{ asset('public/frontend/img/Post_preview/preview_1.jpg')}}" alt="preview_img">
+                <img src="{{ $post->post_img}}" alt="preview_img">
             </div>
             <div class="posts_desc d_flex">
                 <div class="posts_title">
                     <div class="categories d_flex">
-                        <a href="#">art</a>
-                        <a href="#">health</a>
+                        <a href="{{url('/')}}?category={{$post->category->slug}}">{{$post->category->name}}</a>
                     </div>
-                    <a class="title">
-                        Barbecue Party Tips For A Truly Amazing Event
+                    <a class="title" href="{{ url('post/'. $post->id) }}">
+                        {{$post->title}}
                     </a>
                     <div class="info d_flex">
-                        <p class="date"> june 14, 2015</p>
-                        <p class="author">by <a href="#">author doe</a></p>
+                        <p class="date">{{$post->created_at->format('d F, Y')}}</p>
+                        <p class="author">by <a href="#">{{$post->user->name}}</a></p>
                     </div>
                 </div>
-                <p class="text_contents">Lorem ipsum dolor sit amet consectetur, adipisicing
-                    elit.
-                    Cumque ullam sunt eligendi. Labore voluptatum aspernatur inventore tempora.
+                <p class="text_contents">
+                    {!!substr($post->details,0,132)!!}
                     <br>
-                    <a class="read_more" href="#">...</a>
+                    <a class="read_more" href="{{ url('post/'. $post->id) }}">...</a>
                 </p>
-
             </div>
         </div>
         <div class="post_buttons d_flex">
@@ -124,267 +122,26 @@ Home
             </div>
         </div>
     </div>
+    @endforeach
 
-    <div class="posts">
-        <div class="posts_contents_wrapper d_flex">
-            <div class="posts_preview_img">
-                <img src="{{ asset('public/frontend/img/Post_preview/preview_2.jpg')}}" alt="preview_img">
-            </div>
-            <div class="posts_desc d_flex">
-                <div class="posts_title">
-                    <div class="categories d_flex">
-                        <a href="#">art</a>
-                    </div>
-                    <a class="title">
-                        The Principles Of Scientific
-                        Cooking
-                    </a>
-                    <div class="info d_flex">
-                        <p class="date"> june 14, 2015</p>
-                        <p class="author">by <a href="#">author doe</a></p>
-                    </div>
-                </div>
-                <p class="text_contents">Lorem ipsum dolor sit amet consectetur, adipisicing
-                    elit.
-                    Cumque ullam sunt eligendi. Labore voluptatum aspernatur inventore tempora.
-                    <br>
-                    <a class="read_more" href="#">...</a>
-                </p>
-
-            </div>
-        </div>
-        <div class="post_buttons d_flex">
-            <div class="comments d_flex">
-                <i class="far fa-comment"></i>
-                <p>24</p>
-            </div>
-            <div class="post_share">
-                <span>Share</span>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="posts">
-        <div class="posts_contents_wrapper d_flex">
-            <div class="posts_preview_img">
-                <img src="{{ asset('public/frontend/img/Post_preview/preview_3.jpg')}}" alt="preview_img">
-            </div>
-            <div class="posts_desc d_flex">
-                <div class="posts_title">
-                    <div class="categories d_flex">
-                        <a href="#">art</a>
-                    </div>
-                    <a class="title">
-                        How To Meet That Special
-                        Someone
-                    </a>
-                    <div class="info d_flex">
-                        <p class="date"> june 14, 2015</p>
-                        <p class="author">by <a href="#">author doe</a></p>
-                    </div>
-                </div>
-                <p class="text_contents">Lorem ipsum dolor sit amet consectetur, adipisicing
-                    elit.
-                    Cumque ullam sunt eligendi. Labore voluptatum aspernatur inventore tempora.
-                    <br>
-                    <a class="read_more" href="#">...</a>
-                </p>
-
-            </div>
-        </div>
-        <div class="post_buttons d_flex">
-            <div class="comments d_flex">
-                <i class="far fa-comment"></i>
-                <p>24</p>
-            </div>
-            <div class="post_share">
-                <span>Share</span>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="posts">
-        <div class="posts_contents_wrapper d_flex">
-            <div class="posts_preview_img">
-                <img src="{{ asset('public/frontend/img/Post_preview/preview_4.jpg')}}" alt="preview_img">
-            </div>
-            <div class="posts_desc d_flex">
-                <div class="posts_title">
-                    <div class="categories d_flex">
-                        <a href="#">art</a>
-                    </div>
-                    <a class="title">
-                        How To Meet That Special
-                        Someone
-                    </a>
-                    <div class="info d_flex">
-                        <p class="date"> june 14, 2015</p>
-                        <p class="author">by <a href="#">author doe</a></p>
-                    </div>
-                </div>
-                <p class="text_contents">Lorem ipsum dolor sit amet consectetur, adipisicing
-                    elit.
-                    Cumque ullam sunt eligendi. Labore voluptatum aspernatur inventore tempora
-                    <br>
-                    <a class="read_more" href="#">...</a>
-                </p>
-
-            </div>
-        </div>
-        <div class="post_buttons d_flex">
-            <div class="comments d_flex">
-                <i class="far fa-comment"></i>
-                <p>24</p>
-            </div>
-            <div class="post_share">
-                <span>Share</span>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="posts">
-        <div class="posts_contents_wrapper d_flex">
-            <div class="posts_preview_img">
-                <img src="{{ asset('public/frontend/img/Post_preview/preview_5.jpg')}}" alt="preview_img">
-            </div>
-            <div class="posts_desc d_flex">
-                <div class="posts_title">
-                    <div class="categories d_flex">
-                        <a href="#">art</a>
-                        <a href="#">lifestyle</a>
-                    </div>
-                    <a class="title">
-                        How To Meet That Special
-                        Someone
-                    </a>
-                    <div class="info d_flex">
-                        <p class="date"> june 14, 2015</p>
-                        <p class="author">by <a href="#">author doe</a></p>
-                    </div>
-                </div>
-                <p class="text_contents">Lorem ipsum dolor sit amet consectetur, adipisicing
-                    elit.
-                    Cumque ullam sunt eligendi. Labore voluptatum aspernatur inventore tempora.
-                    <br>
-                    <a class="read_more" href="#">...</a>
-                </p>
-
-            </div>
-        </div>
-        <div class="post_buttons d_flex">
-            <div class="comments d_flex">
-                <i class="far fa-comment"></i>
-                <p>24</p>
-            </div>
-            <div class="post_share">
-                <span>Share</span>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="posts">
-        <div class="posts_contents_wrapper d_flex">
-            <div class="posts_preview_img">
-                <img src="{{ asset('public/frontend/img/Post_preview/preview_6.jpg')}}" alt="preview_img">
-            </div>
-            <div class="posts_desc d_flex">
-                <div class="posts_title">
-                    <div class="categories d_flex">
-                        <a href="#">travel</a>
-                    </div>
-                    <a class="title">
-                        How To Meet That Special
-                        Someone
-                    </a>
-                    <div class="info d_flex">
-                        <p class="date"> june 14, 2015</p>
-                        <p class="author">by <a href="#">author doe</a></p>
-                    </div>
-                </div>
-                <p class="text_contents">Lorem ipsum dolor sit amet consectetur, adipisicing
-                    elit.
-                    Cumque ullam sunt eligendi. Labore voluptatum aspernatur inventore tempora.
-                    <br>
-                    <a class="read_more" href="#">...</a>
-                </p>
-
-            </div>
-        </div>
-        <div class="post_buttons d_flex">
-            <div class="comments d_flex">
-                <i class="far fa-comment"></i>
-                <p>24</p>
-            </div>
-            <div class="post_share">
-                <span>Share</span>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="posts">
-        <div class="posts_contents_wrapper d_flex">
-            <div class="posts_preview_img">
-                <img src="{{ asset('public/frontend/img/Post_preview/preview_7.jpg')}}" alt="preview_img">
-            </div>
-            <div class="posts_desc d_flex">
-                <div class="posts_title">
-                    <div class="categories d_flex">
-                        <a href="#">art</a>
-                    </div>
-                    <a class="title">
-                        How To Meet That Special
-                        Someone
-                    </a>
-                    <div class="info d_flex">
-                        <p class="date"> june 14, 2015</p>
-                        <p class="author">by <a href="#">author doe</a></p>
-                    </div>
-                </div>
-                <p class="text_contents">Lorem ipsum dolor sit amet consectetur, adipisicing
-                    elit.
-                    Cumque ullam sunt eligendi. Labore voluptatum aspernatur inventore tempora.
-                    <br>
-                    <a class="read_more" href="#">...</a>
-                </p>
-
-            </div>
-        </div>
-        <div class="post_buttons d_flex">
-            <div class="comments d_flex">
-                <i class="far fa-comment"></i>
-                <p>24</p>
-            </div>
-            <div class="post_share">
-                <span>Share</span>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-            </div>
-        </div>
-    </div>
-
+    @if ($posts instanceof \Illuminate\Pagination\LengthAwarePaginator))
     <nav class="pagination">
         <div class="page-links">
-            <span class="page-numbers current">1</span>
-            <a class="page-numbers" href="#/page/2/">2</a>
-            <a class="next page-numbers" href="#/page/2/">next</a>
+            <a class="prev page-numbers {{$posts->previousPageUrl()==null ? 'd-none' : ''}}"
+                href="{{$posts->previousPageUrl()}}">previews</a>
+
+            @for ($i = 1; $i < $posts->lastPage()+1; $i++)
+                <a class="page-numbers {{$posts->currentPage() == $i ? 'current' : '' }}"
+                    href=" {{$posts->url($i)}}">{{$i}}</a>
+                @endfor
+
+                <a class="next page-numbers" {{$posts->previousPageUrl()==null ? 'd-none' : ''}}
+                    href="{{$posts->nextPageUrl()}}">next</a>
         </div>
+
     </nav>
+    @endif
+
 
 </section>
 @endsection

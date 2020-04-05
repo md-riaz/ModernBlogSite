@@ -17,9 +17,10 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('category_id');
-            $table->string('user_id');
+            // this is a foreign key constrain to delete posts associated with a deleted user_id
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('post_img')->nullable();
-            $table->string('details');
+            $table->text('details');
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@
             <div class="post_details d_flex">
                 <div class="posts_title">
                     <div class="categories d_flex">
-                        <a href="#">{{$post->category_id}}</a>
+                        <a href="#">{{$post->category->name}}</a>
                     </div>
                     <a class="title">
                         {{$post->title}}
@@ -27,14 +27,15 @@
             </div>
             <div class="entry-content">
                 <p class="text_contents">
-                    {{$post->details}}
+                    {!!$post->details!!}
                 </p>
             </div>
 
             <div class="tags">
                 <ul class="taglist d_flex">
-                    <li><a href="#">fashion</a></li>
-                    <li><a href="#">music</a></li>
+                    @foreach ($post->tags as $tag)
+                    <li><a href="{{url('/')}}?tag={{$tag->name}}">{{$tag->name}}</a></li>
+                    @endforeach
                 </ul>
             </div>
         </div>

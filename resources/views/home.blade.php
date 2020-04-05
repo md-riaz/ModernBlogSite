@@ -41,6 +41,6 @@ Admin Panel
         </tr>
         @endforeach
     </tbody>
-    {{$users->links()}}
 </table>
+{{$users->links()}}
 @endsection

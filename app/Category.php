@@ -15,4 +15,9 @@ class Category extends Model
     {
         return $this->belongsTo(User::class);
     }
+    // A category can belongs to a post
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

@@ -27,6 +27,8 @@ class PostController extends Controller
      */
     public function create()
     {
+        $this->middleware('auth');
+
         $categories = Category::all();
         return view('post.write', compact('categories'));
     }
@@ -136,11 +138,12 @@ class PostController extends Controller
             $ext = strtolower($image->getClientOriginalExtension());
             $img_full_name = $image_name . '.' . $ext;
             $upload_path = 'public/frontend/postimg/';
+            $img_url = $upload_path . $img_full_name;
             $succes = $image->move($upload_path, $img_full_name);
             unlink($upload_path . $request->old_img);
             echo $image;
             if ($succes) {
-                $update_post->post_img = $img_full_name;
+                $update_post->post_img = $img_url;
             }
         } else {
             $update_post->post_img = $request->old_img;

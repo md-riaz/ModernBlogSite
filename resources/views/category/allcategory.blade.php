@@ -44,6 +44,22 @@ All Category
         </tr>
         @endforeach
     </tbody>
-    {{$categories->links()}}
 </table>
+@if ($categories instanceof \Illuminate\Pagination\LengthAwarePaginator)
+<nav class="pagination">
+    <div class="page-links">
+        <a class="prev page-numbers {{$categories->previousPageUrl()==null ? 'd-none' : ''}}"
+            href="{{$categories->previousPageUrl()}}">previews</a>
+
+        @for ($i = 1; $i < $categories->lastPage()+1; $i++)
+            <a class="page-numbers {{$categories->currentPage() == $i ? 'current' : '' }}"
+                href=" {{$categories->url($i)}}">{{$i}}</a>
+            @endfor
+
+            <a class="next page-numbers" {{$categories->previousPageUrl()==null ? 'd-none' : ''}}
+                href="{{$categories->nextPageUrl()}}">next</a>
+    </div>
+
+</nav>
+@endif
 @endsection

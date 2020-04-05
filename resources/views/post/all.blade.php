@@ -21,12 +21,12 @@ All Posts
         <th>Image</th>
         <th>Action</th>
     </thead>
-    {{$posts}}
     <tbody>
-        @foreach ($posts as $row)
+        @forelse ($posts as $row)
+
         <tr>
             <td>{{ $posts->firstItem() + $loop->index }}</td>
-            <td> {{substr($row->title,0, 24) }}...</td>
+            <td> {{substr($row->title,0, 50) }}...</td>
             <td>{{ $row->user->name }}</td>
             <td>{{ $row->category->name }}</td>
             <td><img src="{{$row->post_img}}" alt="" width="80" height="50"></td>
@@ -42,8 +42,30 @@ All Posts
                 </form>
             </td>
         </tr>
-        @endforeach
+        @empty
+        <tr>
+            <td colspan="10">No data to show</td>
+        </tr>
+        @endforelse
     </tbody>
-    {{$posts->links()}}
 </table>
+
+@if ($posts instanceof \Illuminate\Pagination\LengthAwarePaginator)
+<nav class="pagination">
+    <div class="page-links">
+        <a class="prev page-numbers {{$posts->previousPageUrl()==null ? 'd-none' : ''}}"
+            href="{{$posts->previousPageUrl()}}">previews</a>
+
+        @for ($i = 1; $i < $posts->lastPage()+1; $i++)
+            <a class="page-numbers {{$posts->currentPage() == $i ? 'current' : '' }}"
+                href=" {{$posts->url($i)}}">{{$i}}</a>
+            @endfor
+
+            <a class="next page-numbers" {{$posts->previousPageUrl()==null ? 'd-none' : ''}}
+                href="{{$posts->nextPageUrl()}}">next</a>
+    </div>
+
+</nav>
+@endif
+
 @endsection

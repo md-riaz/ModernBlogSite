@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,14 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'IndexController@index');
 
 Auth::routes();
 
 // Main Admin Page
-Route::get('/home', 'AdminController@index')->name('home');
+Route::get('/home', 'AdminController@index')->name('home')->middleware('auth');
 // Categories
 Route::resource('category', 'CategoryController');
 

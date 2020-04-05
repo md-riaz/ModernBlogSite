@@ -10922,6 +10922,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: inherit;
+}
+
 p {
   font: var(--reguler) 15px/22px var(--OpenSans);
   margin: 0;
@@ -11450,7 +11454,8 @@ img {
 }
 
 .pagination {
-  display: block;
+  display: flex;
+  justify-content: center;
   padding-top: 40px;
   padding-bottom: 20px;
   overflow: hidden;
@@ -11482,16 +11487,28 @@ img {
   border-radius: 50%;
 }
 
-.pagination .next {
+.pagination .next,
+.pagination .prev {
   margin-left: 40px;
   text-transform: uppercase;
   letter-spacing: 5px;
   font: var(--light) 11px/30px var(--OpenSans);
 }
 
+.pagination .next::before,
+.pagination .next::after,
+.pagination .prev::before,
+.pagination .prev::after {
+  font: var(--bold) 11px/29px "Font Awesome 5 Free";
+}
+
+.pagination .prev::before {
+  content: "\F30A";
+  margin-right: 9px;
+}
+
 .pagination .next::after {
   content: "\F30B";
-  font: var(--bold) 11px/29px "Font Awesome 5 Free";
   margin-left: 9px;
 }
 
