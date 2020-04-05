@@ -26,7 +26,7 @@ All Posts
 
         <tr>
             <td>{{ $posts->firstItem() + $loop->index }}</td>
-            <td> {{substr($row->title,0, 50) }}...</td>
+            <td style="width: 195px;height:50px"> {{$row->title }}...</td>
             <td>{{ $row->user->name }}</td>
             <td>{{ $row->category->name }}</td>
             <td><img src="{{$row->post_img}}" alt="" width="80" height="50"></td>

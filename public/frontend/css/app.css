@@ -12218,6 +12218,10 @@ textarea {
   width: 100%;
 }
 
+.table td {
+  vertical-align: middle;
+}
+
 td,
 th {
   border: 1px solid #dddddd;

@@ -63,9 +63,10 @@ class PostController extends Controller
             $ext = strtolower($image->getClientOriginalExtension());
             $img_full_name = $image_name . '.' . $ext;
             $upload_path = 'public/frontend/postimg/';
+            $img_url = $upload_path . $img_full_name;
             $succes = $image->move($upload_path, $img_full_name);
             if ($succes) {
-                $insert_post->post_img = $img_full_name;
+                $insert_post->post_img = $img_url;
             }
         }
         $insert_post->save();

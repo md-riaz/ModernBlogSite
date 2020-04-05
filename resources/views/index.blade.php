@@ -23,7 +23,7 @@ Home
                     {{ $item->title}}
                 </a>
                 <div class="post_bottom d_flex">
-                    <p class="date">june 14,2015</p>
+                    <p class="date">{{$item->updated_at->format('d F, Y')}}</p>
                     <div class="comments d_flex">
                         <i class="fas fa-comment"></i>
                         <p>24</p>
