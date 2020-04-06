@@ -46,7 +46,7 @@ Home
     <div class="posts">
         <div class="posts_contents_wrapper d_flex">
             <div class="posts_preview_img">
-                <img src="{{ $post->post_img}}" alt="preview_img">
+                <img src="{{ asset($post->post_img)}}" alt="preview_img">
             </div>
             <div class="posts_desc d_flex">
                 <div class="posts_title">
