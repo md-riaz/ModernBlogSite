@@ -4,13 +4,6 @@ All Posts
 @endsection
 
 @section('content')
-<ul class="buttons d_flex justify-content-center">
-    <li><a href="{{ URL::to('category') }}"><button class="flat-btn">all category</button></a></li>
-    <li><a href="{{ URL::to('category/create') }}"><button class="flat-btn">add category</button></a></li>
-    <li><a href="{{ URL::to('post') }}"><button class="flat-btn">all posts</button></a></li>
-    <li><a href="{{ URL::to('post/create') }}"><button class="flat-btn">write post</button></a></li>
-</ul>
-<hr>
 
 <table class="table table-responsive">
     <thead>
@@ -28,8 +21,8 @@ All Posts
             <td>{{ $posts->firstItem() + $loop->index }}</td>
             <td style="width: 195px;height:50px"> {{$row->title }}...</td>
             <td>{{ $row->user->name }}</td>
-            <td>{{ $row->category->name }}</td>
-            <td><img src="{{$row->post_img}}" alt="" width="80" height="50"></td>
+            <td>{{ $row->category_id }}</td>
+            <td><img src="{{asset($row->post_img)}}" alt="" width="80" height="50"></td>
             <td>
                 <a href="{{ url('post/'. $row->id.'/edit') }}" class="btn table-primary"><i class="far fa-edit"></i></a>
                 <a href="{{ url('post/'. $row->id) }}" class="btn text-secondary"><i class="far fa-eye"></i></a>
@@ -61,7 +54,7 @@ All Posts
                 href=" {{$posts->url($i)}}">{{$i}}</a>
             @endfor
 
-            <a class="next page-numbers" {{$posts->previousPageUrl()==null ? 'd-none' : ''}}
+            <a class="next page-numbers {{$posts->previousPageUrl()==null ? 'd-none' : ''}}"
                 href="{{$posts->nextPageUrl()}}">next</a>
     </div>
 

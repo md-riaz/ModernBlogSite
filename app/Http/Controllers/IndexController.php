@@ -16,7 +16,6 @@ class IndexController extends Controller
         } else {
             $posts = Post::latest('updated_at')->paginate(7);
         }
-
         return view('index', compact('posts'));
     }
 
@@ -25,6 +24,12 @@ class IndexController extends Controller
     {
         $category_id = Category::where('slug', request('slug'))->first()->id;
         $posts = Post::where('category_id', $category_id)->get();
+        return view('index', compact('posts'));
+    }
+
+    public function UserPosts($id)
+    {
+        $posts = Post::where('user_id', $id)->get();
         return view('index', compact('posts'));
     }
 }

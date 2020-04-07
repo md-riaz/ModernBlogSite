@@ -47,7 +47,7 @@ class PostController extends Controller
             'category_id' => 'required|min:1',
             'post_img' => 'mimes:jpg,jpeg,png,PNG |max:1000',
             'details' => 'required|max:5000|min:100',
-            // 'tags' => 'required|min:3',
+
         ]);
 
         // Create a new instance of Post model
@@ -182,10 +182,10 @@ class PostController extends Controller
         $select = $post->id;
         $delete = Post::findOrFail($select);
         $delete->delete();
-
+        unlink($post->post_img);
         if ($delete) {
             $notification = [
-                'message' => 'Successfully Category Deleted',
+                'message' => 'Successfully Post Deleted',
                 'alert-type' => 'success'
             ];
         }

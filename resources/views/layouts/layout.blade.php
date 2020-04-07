@@ -11,17 +11,13 @@
     <title>@yield('siteTitle')</title>
     <link rel="shortcut icon" href="{{ asset('public/frontend/favicon.ico')}}" type="image/x-icon">
     <link rel="icon" href="{{ asset('public/frontend/favicon.ico')}}" type="image/x-icon">
+    <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('public/frontend/css/app.css')}}">
-
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('public/js/app.js') }}" defer></script> --}}
-
+    <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/toastr.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -58,8 +54,15 @@
                                 <li><a href="#">contact</a></li>
                                 @if (Route::has('login'))
                                 @auth
-                                <li>
-                                    <a href="{{ route('home') }}">Admin</a>
+                                <li class="multi-nav">
+                                    <a href="javascript:void;">Admin</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{{ URL::to('users') }}">all users</a></li>
+                                        <li><a href="{{ URL::to('category') }}">all category</a></li>
+                                        <li><a href="{{ URL::to('post') }}">all posts</a></li>
+                                        <li><a href="{{ URL::to('category/create') }}">add category</a></li>
+                                        <li><a href="{{ URL::to('post/create') }}">write post</a></li>
+                                    </ul>
                                 </li>
                                 <li>
                                     <a href="{{ route('logout') }}"
@@ -167,7 +170,7 @@
                                 @foreach (App\Category::all() as $category)
                                 <li class="menu-item"><a
                                         href="{{url('/categories/'.$category->slug)}}">{{ $category->name }}</a>
-                                    <span>12</span></li>
+                                    <span></span></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -178,7 +181,7 @@
                                 @foreach (App\Post::take(5)->latest('created_at')->get() as $item)
                                 <div class="latest_post d_flex">
                                     <div class="latest_post_preview_img">
-                                        <img src="{{ $item->post_img}}" alt="preview_img">
+                                        <img src="{{ asset($item->post_img)}}" alt="preview_img">
                                     </div>
                                     <div class="posts_desc">
                                         <p class="date">{{ $item->created_at->format('d F, Y')}}</p>
@@ -251,7 +254,6 @@
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-
             <p class="on_top">on top</p>
             <p class="copyright">Copyright © 2009–2016 MD Riaz LLC.</p>
         </footer>
@@ -259,83 +261,41 @@
 
 
 
-
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="{{ asset('public/js/app.js') }}"></script>
+
 
     <script>
-        // Toster message code
-           @if (Session:: has('message'))
-            var type = "{{ Session::get('alert-type', 'info') }}";
-            switch (type) {
-                case 'info':
-                    toastr.info("{{ Session::get('message') }}");
-                    break;
+        // Toastr Notification
+        @if(Session::has('message'))
+          var type = "{{ Session::get('alert-type', 'info') }}";
+          switch(type){
+              case 'info':
+                  toastr.info("{{ Session::get('message') }}");
+                  break;
+              
+              case 'warning':
+                  toastr.warning("{{ Session::get('message') }}");
+                  break;
+      
+              case 'success':
+                  toastr.success("{{ Session::get('message') }}");
+                  break;
+      
+              case 'error':
+                  toastr.error("{{ Session::get('message') }}");
+                  break;
+          }
+        @endif
 
-                case 'warning':
-                    toastr.warning("{{ Session::get('message') }}");
-                    break;
-
-                case 'success':
-                    toastr.success("{{ Session::get('message') }}");
-                    break;
-
-                case 'error':
-                    toastr.error("{{ Session::get('message') }}");
-                    break;
-            }
-            @endif
-
-            // Sweet alert 2 code===============================================
-            $(document).on("click", "#delete", function (e) {
-                e.preventDefault();
-                const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-danger',
-                    cancelButton: 'btn btn-success'
-                },
-                buttonsStyling: false
-            })
-
-            swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    swalWithBootstrapButtons.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    );
-                    // Get action url from data attribute
-                    $action = $(this).data("action");
-                    //  Set delete form action attribute to that url
-                    $("#deleteForm").attr('action', $action) ;
-                    // Submit the form
-                    $("#deleteForm").submit();
-                } else if (
-                    /* Read more about handling dismissals below */
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'Your imaginary file is safe :)',
-                        'error'
-                    )
-                }
-            })
-            });
+        console.log(type);
+        
     </script>
 
-    <script defer src="{{ asset('public/frontend/js/app.js')}}"></script>
-    <script src="{{ asset('public/frontend/js/custom.js')}}"></script>
+
 </body>
 
 </html>

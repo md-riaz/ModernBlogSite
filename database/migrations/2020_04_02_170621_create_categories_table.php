@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->nullable();
-            $table->integer('user_id');
+            $table->integer('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

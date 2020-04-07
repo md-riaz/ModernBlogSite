@@ -7,12 +7,10 @@ Home
 @section('FeaturePost')
 <!--   Feature Post Section -->
 <section class="feature-posts">
+    @forelse (App\Post::take(9)->latest('updated_at')->get() as $item)
     <div class="feature-posts_wrapper d_flex feature-post-slider owl-carousel owl-theme">
 
-
-        @foreach (App\Post::take(9)->latest('updated_at')->get() as $item)
-
-        <div class="feature-post d_flex item owl-lazy" data-src="{{ $item->post_img}}">
+        <div class="feature-post d_flex item owl-lazy" data-src="{{ asset($item->post_img)}}">
             <span class="overlay"></span>
             <div class="feature-post_content d_flex">
                 <div class="categories d_flex">
@@ -32,11 +30,13 @@ Home
             </div>
         </div>
 
-        @endforeach
-
     </div>
+
     <div class="btn-prev"></div>
     <div class="btn-next"></div>
+    @empty
+
+    @endforelse
 </section>
 @endsection
 @section('content')
@@ -58,7 +58,8 @@ Home
                     </a>
                     <div class="info d_flex">
                         <p class="date">{{$post->created_at->format('d F, Y')}}</p>
-                        <p class="author">by <a href="#">{{$post->user->name}}</a></p>
+                        <p class="author">by <a
+                                href="{{url('user/'.$post->user->id.'/posts')}}">{{$post->user->name}}</a></p>
                     </div>
                 </div>
                 <p class="text_contents">
@@ -96,7 +97,7 @@ Home
                     href=" {{$posts->url($i)}}">{{$i}}</a>
                 @endfor
 
-                <a class="next page-numbers" {{$posts->previousPageUrl()==null ? 'd-none' : ''}}
+                <a class="next page-numbers {{$posts->previousPageUrl()==null ? "d-none" : ""}}"
                     href="{{$posts->nextPageUrl()}}">next</a>
         </div>
 

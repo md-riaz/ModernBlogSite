@@ -4,13 +4,7 @@ Write Post
 @endsection
 
 @section('content')
-<ul class="buttons d_flex justify-content-center">
-    <li><a href="{{ URL::to('category') }}"><button class="flat-btn">all category</button></a></li>
-    <li><a href="{{ URL::to('category/create') }}"><button class="flat-btn">add category</button></a></li>
-    <li><a href="{{ URL::to('post') }}"><button class="flat-btn">all posts</button></a></li>
-    <li><a href="{{ URL::to('post/create') }}"><button class="flat-btn">write post</button></a></li>
-</ul>
-<hr>
+
 <div class="container">
     <div class="write-post">
         <div class="post-comments">
@@ -38,9 +32,7 @@ Write Post
                     <div class="input-field">
                         <textarea name="details" placeholder="Post Details *" aria-required="true" required></textarea>
                     </div>
-                    <center class="input-field">
-                        <input type="text" name="tags" data-role="tagsinput" placeholder="Add tags" />
-                    </center>
+
                     {{-- Displaying The Validation Errors --}}
                     @if ($errors->any())
                     <div class="alert alert-danger">

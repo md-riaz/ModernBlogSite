@@ -4,13 +4,7 @@ All Category
 @endsection
 
 @section('content')
-<ul class="buttons d_flex justify-content-center">
-    <li><a href="{{ URL::to('category') }}"><button class="flat-btn">all category</button></a></li>
-    <li><a href="{{ URL::to('category/create') }}"><button class="flat-btn">add category</button></a></li>
-    <li><a href="{{ URL::to('post') }}"><button class="flat-btn">all posts</button></a></li>
-    <li><a href="{{ URL::to('post/create') }}"><button class="flat-btn">write post</button></a></li>
-</ul>
-<hr>
+
 
 <table class="table table-responsive">
     <thead>
@@ -56,7 +50,7 @@ All Category
                 href=" {{$categories->url($i)}}">{{$i}}</a>
             @endfor
 
-            <a class="next page-numbers" {{$categories->previousPageUrl()==null ? 'd-none' : ''}}
+            <a class="next page-numbers {{$categories->previousPageUrl()==null ? 'd-none' : ''}}"
                 href="{{$categories->nextPageUrl()}}">next</a>
     </div>
 

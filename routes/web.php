@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,13 +18,16 @@ Route::get('/', 'IndexController@index');
 
 Auth::routes();
 
-// Main Admin Page
-Route::get('/home', 'AdminController@index')->name('home')->middleware('auth');
-// Categories
-Route::resource('category', 'CategoryController');
-
-// Post 
-Route::resource('post', 'PostController');
-
 // Category Posts
 Route::get('/categories/{slug}', 'IndexController@CategoryPosts');
+//Users Posts
+Route::get('/user/{id}/posts', 'IndexController@UserPosts');
+
+// Categories
+Route::resource('category', 'CategoryController')->middleware('auth');
+
+// Post Control
+Route::resource('post', 'PostController')->middleware('auth');
+
+//Users Control
+Route::resource('users', 'UsersController')->middleware('auth');

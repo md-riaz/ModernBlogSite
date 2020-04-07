@@ -19,7 +19,7 @@ class Post extends Model
     // A post belongs to has a category
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     // A tag may have many posts

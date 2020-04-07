@@ -58,16 +58,14 @@ class CategoryController extends Controller
                 'message' => 'Successfully Category Inserted',
                 'alert-type' => 'success'
             ];
-
-            return redirect()->back()->with($notification);
         } else {
             $notification = [
                 'message' => 'Error Occurred!',
                 'alert-type' => 'error'
             ];
-            // Return to previews page
-            return redirect()->back()->with($notification);
         }
+        // Return to previews page
+        return redirect()->back()->with($notification);
     }
 
     /**

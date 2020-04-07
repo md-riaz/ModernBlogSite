@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TagPost extends Migration
+class PostTag extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,6 @@ class TagPost extends Migration
      */
     public function up()
     {
-
         Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
             // foreign key constrain to delete reletion on post deletion

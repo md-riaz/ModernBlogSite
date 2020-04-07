@@ -17,13 +17,14 @@
                     </a>
                     <div class="info d_flex">
                         <p class="date">{{$post->created_at->format('jS F, Y')}}</p>
-                        <p class="author">by <a href="#">author doe</a></p>
+                        <p class="author">by <a
+                                href="{{url('user/'.$post->user->id.'/posts')}}">{{$post->user->name}}</a></p>
                     </div>
                 </div>
             </div>
 
             <div class="post_img">
-                <img src="{{asset('public/frontend/postimg/'.$post->post_img)}}" alt="preview_img" />
+                <img src="{{asset($post->post_img)}}" alt="preview_img" />
             </div>
             <div class="entry-content">
                 <p class="text_contents">
