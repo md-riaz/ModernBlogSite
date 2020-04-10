@@ -10,6 +10,18 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+
+        $this->middleware('auth')->except('show');
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -27,8 +39,6 @@ class PostController extends Controller
      */
     public function create()
     {
-        $this->middleware('auth');
-
         $categories = Category::all();
         return view('post.write', compact('categories'));
     }

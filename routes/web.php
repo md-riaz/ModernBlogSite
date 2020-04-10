@@ -27,7 +27,7 @@ Route::get('/user/{id}/posts', 'IndexController@UserPosts');
 Route::resource('category', 'CategoryController')->middleware('auth');
 
 // Post Control
-Route::resource('post', 'PostController')->middleware('auth');
+Route::resource('post', 'PostController');
 
 //Users Control
 Route::resource('users', 'UsersController')->middleware('auth');
