@@ -16,10 +16,10 @@ class Post extends Model
         return $this->belongsTo(User::class); // Select * from posts where user_id = current user
     }
 
-    // A post belongs to has a category
+    // A post has a category
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->hasOne(Category::class, 'id', 'category_id');
     }
 
     // A tag may have many posts

@@ -5,23 +5,25 @@ Home
 
 
 @section('FeaturePost')
+
 <!--   Feature Post Section -->
 <section class="feature-posts">
-    @forelse (App\Post::take(9)->latest('updated_at')->get() as $item)
     <div class="feature-posts_wrapper d_flex feature-post-slider owl-carousel owl-theme">
 
-        <div class="feature-post d_flex item owl-lazy" data-src="{{ asset($item->post_img)}}">
+        @forelse (App\Post::latest('updated_at')->take(6)->get() as $item)
+
+
+        <div class="feature-post d_flex item owl-lazy" data-src="{{asset($item->post_img)}}">
             <span class="overlay"></span>
             <div class="feature-post_content d_flex">
                 <div class="categories d_flex">
-                    <a href="{{url('/categories/'.$item->category->slug)}}">{{ $item->category->name}}</a>
-
+                    <a href="#">{{$item->category->name}}</a>
                 </div>
                 <a class="title">
-                    {{ $item->title}}
+                    from grapefruit to lemons to oranges, citrus does you good!
                 </a>
                 <div class="post_bottom d_flex">
-                    <p class="date">{{$item->updated_at->format('d F, Y')}}</p>
+                    <p class="date">june 14,2015</p>
                     <div class="comments d_flex">
                         <i class="fas fa-comment"></i>
                         <p>24</p>
@@ -30,13 +32,15 @@ Home
             </div>
         </div>
 
-    </div>
+        @empty
+        <p>No Post to show</p>
+        @endforelse
 
+
+
+    </div>
     <div class="btn-prev"></div>
     <div class="btn-next"></div>
-    @empty
-
-    @endforelse
 </section>
 @endsection
 @section('content')
@@ -51,7 +55,7 @@ Home
             <div class="posts_desc d_flex">
                 <div class="posts_title">
                     <div class="categories d_flex">
-                        <a href="{{url('/')}}?category={{$post->category->slug}}">{{$post->category->name}}</a>
+                        <a href="{{url('/categories/'.$post->category->slug)}}">{{$post->category->name}}</a>
                     </div>
                     <a class="title" href="{{ url('post/'. $post->id) }}">
                         {{$post->title}}

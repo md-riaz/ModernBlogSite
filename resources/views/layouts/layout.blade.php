@@ -129,9 +129,7 @@
                                 </div>
                                 <div class="title">about me</div>
                                 <p class="texts">Hi! My name is
-                                    <b>{{Auth::guest() ? 'Guest' : Auth::user()->name}}</b>. Lorem
-                                    Ipsum
-                                    has been the industry's standard dummy text ever </p>
+                                    <b>MD Riaz</b>. This is my blog site. It is based on laravel framework. </p>
                                 <div class="follow_buttons">
                                     <p class="follow">follow me on
                                     </p>
@@ -291,7 +289,6 @@
           }
         @endif
 
-        console.log(type);
         
     </script>
 

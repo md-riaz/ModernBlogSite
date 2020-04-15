@@ -76,7 +76,9 @@
             <h2 class="comment-reply-title">
                 Leave a comment
             </h2>
-            <form action="#" method="post">
+            <form action="#!" method="post">
+                @csrf
+                @method('PUT')
                 <p class="comment-notes">
                     Your email address will not be published.
                 </p>

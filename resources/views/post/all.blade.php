@@ -21,7 +21,7 @@ All Posts
             <td>{{ $posts->firstItem() + $loop->index }}</td>
             <td style="width: 195px;height:50px"> {{$row->title }}...</td>
             <td>{{ $row->user->name }}</td>
-            <td>{{ $row->category_id }}</td>
+            <td>{{ $row->category->name }}</td>
             <td><img src="{{asset($row->post_img)}}" alt="" width="80" height="50"></td>
             <td>
                 <a href="{{ url('post/'. $row->id.'/edit') }}" class="btn table-primary"><i class="far fa-edit"></i></a>
