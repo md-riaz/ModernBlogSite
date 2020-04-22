@@ -21,7 +21,7 @@ Route::get('/home', 'UsersController@index');
 
 
 // Category Posts
-Route::get('/categories/{slug}', 'IndexController@CategoryPosts');
+Route::get('/categories/{slug:slug}', 'IndexController@CategoryPosts');
 //Users Posts
 Route::get('/user/{id}/posts', 'IndexController@UserPosts');
 

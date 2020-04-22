@@ -13,13 +13,13 @@ class Post extends Model
     // A post can belongs to a auther
     public function user()
     {
-        return $this->belongsTo(User::class); // Select * from posts where user_id = current user
+        return $this->belongsTo(User::class); // Select * from posts where user_id = current user id
     }
 
     // A post has a category
     public function category()
     {
-        return $this->hasOne(Category::class, 'id', 'category_id');
+        return $this->belongsTo(Category::class);
     }
 
     // A tag may have many posts

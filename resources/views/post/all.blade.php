@@ -19,7 +19,7 @@ All Posts
 
         <tr>
             <td>{{ $posts->firstItem() + $loop->index }}</td>
-            <td style="width: 195px;height:50px"> {{$row->title }}...</td>
+            <td>{{Str::limit($row->title, 25)}}</td>
             <td>{{ $row->user->name }}</td>
             <td>{{ $row->category->name }}</td>
             <td><img src="{{asset($row->post_img)}}" alt="" width="80" height="50"></td>
