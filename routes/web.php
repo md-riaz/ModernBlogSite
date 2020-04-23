@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'IndexController@index');
 
 Auth::routes();
-Route::get('/home', 'UsersController@index');
+Route::get('/home', 'UsersController@index')->middleware('auth');
 
 
 // Category Posts

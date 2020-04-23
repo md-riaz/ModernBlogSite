@@ -14,10 +14,17 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('public/css/toastr.css') }}" rel="stylesheet">
+    <script src="https://cdn.tiny.cloud/1/g4v6bvbx4urk83696i0550n97p3pmdnlda80zmyq6f88iu4w/tinymce/5/tinymce.min.js">
+    </script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#post_desc',
+            plugins: 'link code'
+        });
+    </script>
 </head>
 
 <body>
@@ -45,8 +52,7 @@
                                 <li class="multi-nav"><a href="#">categories</a>
                                     <ul class="sub-menu">
                                         @foreach (App\Category::all() as $category)
-                                        <li class="menu-item"><a
-                                                href="{{url('/categories/'.$category->slug)}}">{{ $category->name }}</a>
+                                        <li class="menu-item"><a href="{{url('/categories/'.$category->slug)}}">{{ $category->name }}</a>
                                         </li>
                                         @endforeach
                                     </ul>
@@ -65,13 +71,11 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </li>
@@ -166,8 +170,7 @@
                             <h3 class="bottom_bar">categories</h3>
                             <ul>
                                 @foreach (App\Category::all() as $category)
-                                <li class="menu-item"><a
-                                        href="{{url('/categories/'.$category->slug)}}">{{ $category->name }}</a>
+                                <li class="menu-item"><a href="{{url('/categories/'.$category->slug)}}">{{ $category->name }}</a>
                                     <span></span></li>
                                 @endforeach
                             </ul>
@@ -269,27 +272,25 @@
     <script>
         // Toastr Notification
         @if(Session::has('message'))
-          var type = "{{ Session::get('alert-type', 'info') }}";
-          switch(type){
-              case 'info':
-                  toastr.info("{{ Session::get('message') }}");
-                  break;
-              
-              case 'warning':
-                  toastr.warning("{{ Session::get('message') }}");
-                  break;
-      
-              case 'success':
-                  toastr.success("{{ Session::get('message') }}");
-                  break;
-      
-              case 'error':
-                  toastr.error("{{ Session::get('message') }}");
-                  break;
-          }
-        @endif
+        var type = "{{ Session::get('alert-type', 'info') }}";
+        switch (type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
 
-        
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+        }
+        @endif
     </script>
 
 

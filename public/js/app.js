@@ -50268,9 +50268,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\ModernBlogSite\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\xampp\htdocs\ModernBlogSite\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\ModernBlogSite\resources\sass\toastr.scss */"./resources/sass/toastr.scss");
+__webpack_require__(/*! C:\laragon\www\modernblog\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\laragon\www\modernblog\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\laragon\www\modernblog\resources\sass\toastr.scss */"./resources/sass/toastr.scss");
 
 
 /***/ })

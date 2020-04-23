@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
+use Mews\Purifier\Facades\Purifier;
 use Illuminate\Support\Facades\Auth;
+
 
 class PostController extends Controller
 {
@@ -24,7 +26,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -35,7 +37,7 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -47,7 +49,7 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -56,7 +58,7 @@ class PostController extends Controller
             'title' => 'required|max:125|min:5',
             'category_id' => 'required|min:1',
             'post_img' => 'image |max:1000',
-            'details' => 'required|max:5000|min:100',
+            'details' => 'required|min:100',
 
         ]);
 
@@ -64,7 +66,7 @@ class PostController extends Controller
         $insert_post = new Post;
         $insert_post->title = $request->title;
         $insert_post->category_id = $request->category_id;
-        $insert_post->details = $request->details;
+        $insert_post->details = Purifier::clean($request->details);
         $insert_post->user_id = Auth::user()->id;
         $image = $request->file('post_img');
 
@@ -81,7 +83,7 @@ class PostController extends Controller
         }
         $insert_post->save();
 
-        // If success then return with $notification message 
+        // If success then return with $notification message
         if ($insert_post) {
             $notification = [
                 'message' => 'Successfully Posted',
@@ -103,7 +105,7 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Model\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Post $post)
     {
@@ -114,7 +116,7 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Model\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Post $post)
     {
@@ -128,7 +130,7 @@ class PostController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Model\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Post $post)
     {
@@ -143,7 +145,7 @@ class PostController extends Controller
         $update_post = Post::findOrFail($post->id);
         $update_post->title = $request->title;
         $update_post->category_id = $request->category_id;
-        $update_post->details = $request->details;
+        $update_post->details = Purifier::clean($request->details);
         $update_post->user_id = Auth::user()->id;
         $image = $request->file('post_img');
         if ($image) {
@@ -163,7 +165,7 @@ class PostController extends Controller
         }
         $update_post->save();
 
-        // If success then return with $notification message 
+        // If success then return with $notification message
         if ($update_post) {
             $notification = [
                 'message' => 'Successfully Posted',
@@ -185,7 +187,7 @@ class PostController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Model\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Post $post)
     {

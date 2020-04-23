@@ -17,13 +17,13 @@ Home
             <span class="overlay"></span>
             <div class="feature-post_content d_flex">
                 <div class="categories d_flex">
-                    <a href="#">{{$item->category->name}}</a>
+                    <a href="{{url('/categories/'.$item->category->slug)}}">{{$item->category->name}}</a>
                 </div>
-                <a class="title">
-                    from grapefruit to lemons to oranges, citrus does you good!
+                <a class="title" href="{{ url('post/'. $item->id) }}">
+                    {{$item->title}}
                 </a>
                 <div class="post_bottom d_flex">
-                    <p class="date">june 14,2015</p>
+                    <p class="date">{{$item->created_at->format('d F, Y')}}</p>
                     <div class="comments d_flex">
                         <i class="fas fa-comment"></i>
                         <p>24</p>
@@ -43,6 +43,7 @@ Home
     <div class="btn-next"></div>
 </section>
 @endsection
+
 @section('content')
 <!--   Main Post Section -->
 <section class="post-list">
@@ -62,12 +63,11 @@ Home
                     </a>
                     <div class="info d_flex">
                         <p class="date">{{$post->created_at->format('d F, Y')}}</p>
-                        <p class="author">by <a
-                                href="{{url('user/'.$post->user->id.'/posts')}}">{{$post->user->name}}</a></p>
+                        <p class="author">by <a href="{{url('user/'.$post->user->id.'/posts')}}">{{$post->user->name}}</a></p>
                     </div>
                 </div>
                 <p class="text_contents">
-                    {!!substr($post->details,0,200)!!}...
+                    {{Str::limit(strip_tags($post->details), 300)}}
                     <br>
                     <a class="read_more" href="{{ url('post/'. $post->id) }}">...</a>
                 </p>
@@ -93,16 +93,13 @@ Home
     @if ($posts instanceof \Illuminate\Pagination\LengthAwarePaginator))
     <nav class="pagination">
         <div class="page-links">
-            <a class="prev page-numbers {{$posts->previousPageUrl()==null ? 'd-none' : ''}}"
-                href="{{$posts->previousPageUrl()}}">previews</a>
+            <a class="prev page-numbers {{$posts->previousPageUrl()==null ? 'd-none' : ''}}" href="{{$posts->previousPageUrl()}}">previews</a>
 
             @for ($i = 1; $i < $posts->lastPage()+1; $i++)
-                <a class="page-numbers {{$posts->currentPage() == $i ? 'current' : '' }}"
-                    href=" {{$posts->url($i)}}">{{$i}}</a>
+                <a class="page-numbers {{$posts->currentPage() == $i ? 'current' : '' }}" href=" {{$posts->url($i)}}">{{$i}}</a>
                 @endfor
 
-                <a class="next page-numbers {{$posts->previousPageUrl()==null ? "d-none" : ""}}"
-                    href="{{$posts->nextPageUrl()}}">next</a>
+                <a class="next page-numbers {{$posts->previousPageUrl()==null ? "d-none" : ""}}" href="{{$posts->nextPageUrl()}}">next</a>
         </div>
 
     </nav>

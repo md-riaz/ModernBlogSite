@@ -28,7 +28,7 @@
             </div>
             <div class="entry-content">
                 <p class="text_contents">
-                    {!! nl2br(e($post->details))!!}
+                    {!! $post->details !!}
                 </p>
             </div>
 

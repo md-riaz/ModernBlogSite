@@ -2,7 +2,6 @@
 @section('siteTitle')
 Write Post
 @endsection
-
 @section('content')
 
 <div class="container">
@@ -30,7 +29,7 @@ Write Post
                     </div>
 
                     <div class="input-field">
-                        <textarea name="details" placeholder="Post Details *" aria-required="true" required></textarea>
+                        <textarea name="details" rows="20" placeholder="Post Details *" aria-required="true" id="post_desc" style="height: auto;"></textarea>
                     </div>
 
                     {{-- Displaying The Validation Errors --}}

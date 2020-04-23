@@ -34,7 +34,7 @@ Edit Post
                         <input type="hidden" name="old_img" value="{{$post->post_img}}">
                     </div>
                     <div class=" input-field">
-                        <textarea name="details" aria-required="true" required>{{$post->details}}</textarea>
+                        <textarea name="details" rows="20" id="post_desc" style="height: auto;" aria-required="true" required>{{$post->details}}</textarea>
                     </div>
 
                     {{-- Displaying The Validation Errors --}}
