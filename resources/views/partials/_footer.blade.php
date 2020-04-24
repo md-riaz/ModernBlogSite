@@ -1,16 +1,28 @@
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<!-- CSRF Token -->
-<meta name="csrf-token" content="{{ csrf_token() }}">
-
-<title>@yield('title')</title>
-
-<link rel="shortcut icon" href="{{ asset('favicon.ico')}}" type="image/x-icon">
-<link rel="icon" href="{{ asset('favicon.ico')}}" type="image/x-icon">
-<!-- Styles -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-<link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
-<link href="{{ asset('public/css/toastr.css') }}" rel="stylesheet">
+<footer id="main-footer">
+    <div class="follow_insta">
+        <h3 class="title">follow@md_riaz___</h3>
+        <a class="follow" href="https://www.instagram.com/md_riaz___/"><i class="fab fa-instagram"></i>instagram
+        </a>
+        <div class="photo_grid d_flex">
+            <img src="{{ asset('/frontend/img/photo_grid/1.jpg')}}" alt="grid_image">
+            <img src="{{ asset('/frontend/img/photo_grid/2.jpg')}}" alt="grid_image">
+            <img src="{{ asset('/frontend/img/photo_grid/3.jpg')}}" alt="grid_image">
+            <img src="{{ asset('/frontend/img/photo_grid/4.jpg')}}" alt="grid_image">
+            <img src="{{ asset('/frontend/img/photo_grid/5.jpg')}}" alt="grid_image">
+            <img src="{{ asset('/frontend/img/photo_grid/7.jpg')}}" alt="grid_image">
+            <img src="{{ asset('/frontend/img/photo_grid/6.jpg')}}" alt="grid_image">
+        </div>
+    </div>
+    <div class="social_bottom">
+        <div class="social d_flex">
+            <a href="#"><i class="fab fa-tumblr"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <p class="on_top">on top</p>
+    <p class="copyright">Copyright © 2009–2016 MD Riaz LLC.</p>
+</footer>

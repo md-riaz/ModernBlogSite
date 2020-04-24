@@ -54,3 +54,24 @@ Write Post
 </div>
 
 @endsection
+@section('scripts')
+    <script src="https://cdn.tiny.cloud/1/g4v6bvbx4urk83696i0550n97p3pmdnlda80zmyq6f88iu4w/tinymce/5/tinymce.min.js">
+    </script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#post_desc',
+            menubar: false,
+            plugins: 'link code advlist lists table autosave anchor autolink emoticons media image imagetools preview print wordcount' ,
+            toolbar: 'styleselect formatting forecolor backcolor align| link image media | numlist bullist emoticons table preview print code' ,
+            toolbar_groups: {
+                formatting: {
+                    icon: 'bold',
+                    tooltip: 'Formatting',
+                    items: 'bold italic underline | superscript subscript'
+                }
+            },
+            branding: false,
+            height: 500
+        });
+    </script>
+    @endsection
