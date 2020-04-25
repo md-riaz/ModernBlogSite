@@ -30,7 +30,7 @@ Edit Post
                     <div class="input-field">
                         <input type="file" name="post_img">
                         <label for="">Current Image</label><br>
-                        <img src="{{ asset('public//frontend/postimg/'.$post->post_img) }}" alt="" width="120">
+                        <img src="{{ asset($post->post_img) }}" alt="" width="300">
                         <input type="hidden" name="old_img" value="{{$post->post_img}}">
                     </div>
                     <div class=" input-field">

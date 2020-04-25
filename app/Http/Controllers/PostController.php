@@ -139,7 +139,7 @@ class PostController extends Controller
             'title' => 'required|max:125|min:5',
             'category_id' => 'required|min:1',
             'post_img' => 'image |max:1000',
-            'details' => 'required|max:5000|min:100',
+            'details' => 'required |min:100',
         ]);
         // Create a new instance of Post model
         $update_post = Post::findOrFail($post->id);

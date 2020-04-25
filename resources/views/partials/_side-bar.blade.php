@@ -4,7 +4,7 @@
     <div class="about_me">
         <div class="about_me_inner d_flex">
             <div class="avtar">
-                <img src="{{ asset('public//frontend/img/me.png')}}" alt="my_avtar">
+                <img src="{{ asset('public/frontend/img/me.png')}}" alt="my_avtar">
             </div>
             <div class="title">about me</div>
             <p class="texts">Hi! My name is
@@ -30,15 +30,15 @@
     <div class="follow_insta">
         <h3 class="bottom_bar">follow@md_riaz___</h3>
         <div class="photo_grid d_flex">
-            <img src="{{ asset('public//frontend/img/photo_grid/1.jpg')}}" alt="grid_image">
-            <img src="{{ asset('public//frontend/img/photo_grid/2.jpg')}}" alt="grid_image">
-            <img src="{{ asset('public//frontend/img/photo_grid/3.jpg')}}" alt="grid_image">
-            <img src="{{ asset('public//frontend/img/photo_grid/4.jpg')}}" alt="grid_image">
-            <img src="{{ asset('public//frontend/img/photo_grid/5.jpg')}}" alt="grid_image">
-            <img src="{{ asset('public//frontend/img/photo_grid/6.jpg')}}" alt="grid_image">
-            <img src="{{ asset('public//frontend/img/photo_grid/7.jpg')}}" alt="grid_image">
-            <img src="{{ asset('public//frontend/img/photo_grid/8.jpg')}}" alt="grid_image">
-            <img src="{{ asset('public//frontend/img/photo_grid/9.jpg')}}" alt="grid_image">
+            <img src="{{ asset('public/frontend/img/photo_grid/1.jpg')}}" alt="grid_image">
+            <img src="{{ asset('public/frontend/img/photo_grid/2.jpg')}}" alt="grid_image">
+            <img src="{{ asset('public/frontend/img/photo_grid/3.jpg')}}" alt="grid_image">
+            <img src="{{ asset('public/frontend/img/photo_grid/4.jpg')}}" alt="grid_image">
+            <img src="{{ asset('public/frontend/img/photo_grid/5.jpg')}}" alt="grid_image">
+            <img src="{{ asset('public/frontend/img/photo_grid/6.jpg')}}" alt="grid_image">
+            <img src="{{ asset('public/frontend/img/photo_grid/7.jpg')}}" alt="grid_image">
+            <img src="{{ asset('public/frontend/img/photo_grid/8.jpg')}}" alt="grid_image">
+            <img src="{{ asset('public/frontend/img/photo_grid/9.jpg')}}" alt="grid_image">
         </div>
     </div>
     <div class="category_section">
@@ -79,7 +79,7 @@
     <div class="banner">
         <h3 class="bottom_bar">banner</h3>
         <div class="banner_img">
-            <img src="{{ asset('public//frontend/img/banner.jpg')}}" alt="banner_img">
+            <img src="{{ asset('public/frontend/img/banner.jpg')}}" alt="banner_img">
         </div>
     </div>
 
