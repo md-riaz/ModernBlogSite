@@ -6,11 +6,11 @@
 
 <title>@yield('title')</title>
 
-<link rel="shortcut icon" href="{{ asset('favicon.ico')}}" type="image/x-icon">
-<link rel="icon" href="{{ asset('favicon.ico')}}" type="image/x-icon">
+<link rel="shortcut icon" href="{{ asset('public/favicon.ico')}}" type="image/x-icon">
+<link rel="icon" href="{{ asset('public/favicon.ico')}}" type="image/x-icon">
 <!-- Styles -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-<link href="{{ asset('/css/toastr.css') }}" rel="stylesheet">
+<link href="{{ asset('public//css/app.css') }}" rel="stylesheet">
+<link href="{{ asset('public//css/toastr.css') }}" rel="stylesheet">
