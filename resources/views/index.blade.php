@@ -1,8 +1,5 @@
 @extends('layouts.layout')
-@section('siteTitle')
-Home
-@endsection
-
+@section('title' ,'Home')
 
 @section('FeaturePost')
 

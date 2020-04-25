@@ -1,8 +1,6 @@
 @extends('layouts.layout')
-@section('siteTitle')
-Edit Post
-@endsection
 
+@section('title' ,'Edit Post')
 @section('content')
 
 <div class="container">

@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('siteTitle')
+@section('title')
 {{$post->title}}
 @endsection
 

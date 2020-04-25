@@ -1,8 +1,6 @@
-{{-- @extends('layouts.app') --}}
 @extends('layouts.layout')
-@section('siteTitle')
-Log In
-@endsection
+@section('title' ,'Log In')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
