@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -34,11 +35,11 @@ class UsersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(User $user)
     {
-        echo "edit";
+        return view('users.edit');
     }
 
     /**
@@ -46,11 +47,27 @@ class UsersController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, User $user)
+    public function update(User $user)
     {
-        echo "update";
+        if (Hash::check(request()->password, $user->password)) {
+            $user->update(\request()->validate([
+                'name' => 'required',
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id]
+            ]));
+
+            $notification = [
+                'message' => 'Changes saved',
+                'alert-type' => 'success'
+            ];
+            return redirect()->route('users.index')->with($notification);
+        }
+        $notification = [
+            'message' => 'Password does not match from database',
+            'alert-type' => 'error'
+        ];
+      return back()->with($notification);
     }
 
     /**
@@ -61,6 +78,21 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        echo "distroy";
+        echo "You cannot delete a user right now";
+    }
+
+    public function passChange(User $user)
+    {  if (request()->current_password == request()->password){
+        $notification = [
+            'message' => 'New password can not be your old password',
+            'alert-type' => 'error'
+        ];
+        return back()->with($notification);
+    }
+        if (Hash::check(request()->current_password, $user->password)) {
+         request()->validate([
+             'password' => 'required|confirmed|min:6'
+         ]);
+        }
     }
 }

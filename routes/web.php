@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'IndexController@index');
 
 Auth::routes();
-Route::get('/home', 'UsersController@index')->middleware('auth');
+Route::get('/home', 'IndexController@index')->middleware('auth');
 
 
 // Category Posts
@@ -33,3 +33,4 @@ Route::resource('post', 'PostController');
 
 //Users Control
 Route::resource('users', 'UsersController')->middleware('auth');
+Route::post('users/change/password/{user}', 'UsersController@passChange')->name('users.passChange');
