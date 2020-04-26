@@ -48,7 +48,7 @@ a {
 }
 
 p {
-  font: var(--reguler) 15px/22px var(--OpenSans);
+  font: var(--reguler) 15px/22px var(--OpenSans) !important;
   margin: 0;
 }
 
@@ -527,13 +527,6 @@ img {
     }
   }
 
-  .text_contents {
-    color: var(--clr_BokaraGrey);
-    opacity: 0.7;
-    margin-bottom: 25px;
-    margin-top: 10px;
-    width: 100%;
-  }
 
   .read_more {
     font: var(--bold) 2em/40px var(--OpenSans);
@@ -949,6 +942,12 @@ img {
 }
 .entry-content {
   padding: 25px 5px;
+  width: 100%;
+  color: var(--clr_BokaraGrey);
+  opacity: 0.7;
+  margin-bottom: 25px;
+  margin-top: 10px;
+  overflow: hidden;
 }
 .post-list {
   .details_page {

@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title' ,'Home')
+@section('title' ,'larablog | A laravel blog')
 
 @section('FeaturePost')
 

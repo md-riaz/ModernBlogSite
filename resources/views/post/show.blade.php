@@ -27,9 +27,9 @@
                 <img src="{{asset($post->post_img)}}" alt="preview_img" />
             </div>
             <div class="entry-content">
-                <p class="text_contents">
+
                     {!! $post->details !!}
-                </p>
+
             </div>
 
             <div class="tags">
