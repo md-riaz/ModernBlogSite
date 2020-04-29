@@ -24,7 +24,7 @@
             <td><img src="{{asset($row->post_img)}}" alt="" width="80" height="50"></td>
             <td>
                 <a href="{{ url('post/'. $row->id.'/edit') }}" class="btn table-primary"><i class="far fa-edit"></i></a>
-                <a href="{{ url('post/'. $row->id) }}" class="btn text-secondary"><i class="far fa-eye"></i></a>
+                <a href="{{ url('post/'. $row->slug) }}" class="btn text-secondary"><i class="far fa-eye"></i></a>
 
                 <form action="" id="deleteForm" method="POST">
                     @csrf

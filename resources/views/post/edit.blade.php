@@ -13,10 +13,12 @@
                     @method('PUT')
                     <div class="d_flex comment-double">
                         <div class="input-field">
-                            <input type="text" name="title" value="{{$post->title}}" aria-required="true" required />
+                            <label for="title">Title</label>
+                            <input type="text" name="title" value="{{$post->title}}" aria-required="true" required id="title" max="255"/>
                         </div>
                         <div class="input-field">
-                            <select name="category_id">
+                            <label for="category">Category</label>
+                            <select name="category_id" id="category">
                                 <option value="" disabled selected>Select a Category</option>
                                 @foreach ($categories as $item)
                                 <option value="{{ $item->id }}" {{ $item->id==$post->category_id ? 'selected' : '' }}>
@@ -26,12 +28,19 @@
                         </div>
                     </div>
                     <div class="input-field">
-                        <input type="file" name="post_img">
+                        <label for="slug">Slug</label>
+                        <input type="text" name="slug" placeholder="Slug/url*" aria-required="true"
+                               required max="100" id="slug" value="{{$post->slug}}"/>
+                    </div>
+                    <div class="input-field">
+                        <label for="image">Feature Image</label>
+                        <input type="file" name="post_img" id="image">
                         <label for="">Current Image</label><br>
                         <img src="{{ asset($post->post_img) }}" alt="" width="300">
                         <input type="hidden" name="old_img" value="{{$post->post_img}}">
                     </div>
                     <div class=" input-field">
+                        <label for="post_desc">Post body</label>
                         <textarea name="details" rows="20" id="post_desc" style="height: auto;" aria-required="true" required>{{$post->details}}</textarea>
                     </div>
 

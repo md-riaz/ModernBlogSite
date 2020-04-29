@@ -35,7 +35,7 @@ body {
   margin: 0;
   padding: 0;
   transition: 0.5s;
-  font-family: "Baloo Da 2", cursive !important;
+  font-family: "Baloo Da 2", cursive;
   background-color: #fff;
 }
 
@@ -48,7 +48,7 @@ a {
 }
 
 p {
-  font: var(--reguler) 15px/22px var(--OpenSans) !important;
+  font: var(--reguler) 15px/22px var(--OpenSans);
   margin: 0;
 }
 
@@ -948,6 +948,13 @@ img {
   margin-bottom: 25px;
   margin-top: 10px;
   overflow: hidden;
+    p {
+        color: var(--clr_BokaraGrey)!important;
+        opacity: .9;
+        margin-bottom: 25px;
+        margin-top: 10px;
+        width: 100%;
+    }
 }
 .post-list {
   .details_page {

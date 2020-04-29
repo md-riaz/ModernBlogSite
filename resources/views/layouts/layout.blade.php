@@ -10,11 +10,12 @@
 
 <body>
     <div id="page-contianer">
-        <!--    header section   -->
-        @include('partials._header')
+        <!--    header component   -->
+        <x-header></x-header>
 
             <main id="main-content">
-                @yield('FeaturePost')
+                <!-- feature post component -->
+              <x-feature_posts/>
 
                 <section class="Contents">
                     <div class="container d_flex">
@@ -23,9 +24,8 @@
                             @yield('content')
 
                         </div>
-                        <!--    side bar section   -->
-                        @include('partials._side-bar')
-
+                        <!--    side bar component   -->
+                        <x-sidebar/>
                     </div>
                 </section>
             </main>

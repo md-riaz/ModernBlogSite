@@ -55,8 +55,9 @@ class PostController extends Controller
     {
         // Validate input data
         $validatedData = $request->validate([
-            'title' => 'required|max:125|min:5',
+            'title' => 'required|max:255|min:5|unique:posts,title',
             'category_id' => 'required|min:1',
+            'slug'=> 'required|max:100|min:5|alpha_dash|unique:posts,slug',
             'post_img' => 'image |max:1000',
             'details' => 'required|min:100',
 
@@ -65,6 +66,7 @@ class PostController extends Controller
         // Create a new instance of Post model
         $insert_post = new Post;
         $insert_post->title = $request->title;
+        $insert_post->slug = $request->slug;
         $insert_post->category_id = $request->category_id;
         $insert_post->details = Purifier::clean($request->details);
         $insert_post->user_id = Auth::user()->id;
@@ -136,17 +138,19 @@ class PostController extends Controller
     {
         // Validate input data
         $validatedData = $request->validate([
-            'title' => 'required|max:125|min:5',
+            'title' => 'required|max:255|min:5|unique:posts,title,'.$post->id,
+            'slug'=> 'required|max:100|min:5|alpha_dash|unique:posts,slug,'.$post->id,
             'category_id' => 'required|min:1',
-            'post_img' => 'image |max:1000',
+            'post_img' => 'image|max:1000',
             'details' => 'required |min:100',
         ]);
-        // Create a new instance of Post model
-        $update_post = Post::findOrFail($post->id);
-        $update_post->title = $request->title;
-        $update_post->category_id = $request->category_id;
-        $update_post->details = Purifier::clean($request->details);
-        $update_post->user_id = Auth::user()->id;
+
+
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        $post->category_id = $request->category_id;
+        $post->details = Purifier::clean($request->details);
+        $post->user_id = Auth::user()->id;
         $image = $request->file('post_img');
         if ($image) {
             $image_name = hexdec(uniqid());
@@ -158,15 +162,15 @@ class PostController extends Controller
             unlink($upload_path . $request->old_img);
             echo $image;
             if ($succes) {
-                $update_post->post_img = $img_url;
+                $post->post_img = $img_url;
             }
         } else {
-            $update_post->post_img = $request->old_img;
+            $post->post_img = $request->old_img;
         }
-        $update_post->save();
+        $post->save();
 
         // If success then return with $notification message
-        if ($update_post) {
+        if ($post) {
             $notification = [
                 'message' => 'Successfully Posted',
                 'alert-type' => 'success'

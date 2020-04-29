@@ -30,7 +30,11 @@ Route::resource('category', 'CategoryController')->middleware('auth');
 
 // Post Control
 Route::resource('post', 'PostController');
+Route::get('/post/{post:slug}', 'PostController@show')->name('post.show'); //access post using slug
 
 //Users Control
 Route::resource('users', 'UsersController')->middleware('auth');
 Route::post('users/change/password/{user}', 'UsersController@passChange')->name('users.passChange');
+
+// Newshelter
+Route::post('/newshelter', 'SubscriberController@store')->name('subscribe');

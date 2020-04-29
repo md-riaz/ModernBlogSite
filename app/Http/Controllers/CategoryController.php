@@ -13,7 +13,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -24,7 +24,7 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -35,13 +35,13 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         // Validate input data
         $validatedData = $request->validate([
-            'name' => 'required|unique:categories|max:25|min:4'
+            'name' => 'required|max:25|min:1|unique:categories'
         ]);
         $slug = strtolower(str_replace(" ", "-", $request->name));
         // Create a new instance of Category model
@@ -52,7 +52,7 @@ class CategoryController extends Controller
 
         $insert_category->save();
 
-        // If success then return with $notification message 
+        // If success then return with $notification message
         if ($insert_category) {
             $notification = [
                 'message' => 'Successfully Category Inserted',
@@ -72,7 +72,7 @@ class CategoryController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -84,7 +84,7 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -97,13 +97,13 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'unique:categories|max:25|min:4',
-            'slug' => 'unique:categories|max:25|min:4'
+            'name' => 'required|max:25|min:1|unique:categories,name'.$id,
+            'slug' => 'required|max:25|min:1|unique:categories,slug'.$id
         ]);
 
         $update = Category::findOrFail($id);
@@ -113,7 +113,7 @@ class CategoryController extends Controller
 
         $update->save();
 
-        // If success then return with $notification message 
+        // If success then return with $notification message
         if ($update) {
             $notification = [
                 'message' => 'Successfully Category Updated',
@@ -134,7 +134,7 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {

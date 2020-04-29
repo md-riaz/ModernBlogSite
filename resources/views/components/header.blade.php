@@ -15,11 +15,9 @@
                                 <li class="menu-item"><a href="#">Masonry</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">posttypes</a></li>
-
                         <li class="multi-nav"><a href="#">categories</a>
                             <ul class="sub-menu">
-                                @foreach (App\Category::all() as $category)
+                                @foreach ($categories as $category)
                                     <li class="menu-item"><a href="{{url('/categories/'.$category->slug)}}">{{ $category->name }}</a>
                                     </li>
                                 @endforeach

@@ -4,7 +4,7 @@
 <!-- Primary Meta Tags -->
 <title>@yield('title')</title>
 <meta name="title" content="larablog | A laravel blog">
-<meta name="description" content="This is a personal blog site made with Laravel. Hope you all will like it.">
+<meta name="description" content="@yield('title')">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">

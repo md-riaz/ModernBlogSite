@@ -12,11 +12,13 @@
                         @csrf
                         <div class="d_flex comment-double">
                             <div class="input-field">
+                                <label for="title">Title</label>
                                 <input type="text" name="title" placeholder="Post Title *" aria-required="true"
-                                       required/>
+                                       required id="title" max="255"/>
                             </div>
                             <div class="input-field">
-                                <select name="category_id">
+                                <label for="category">Category</label>
+                                <select name="category_id" id="category">
                                     <option value="" disabled selected>Select a Category</option>
                                     @foreach ($categories as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -25,10 +27,17 @@
                             </div>
                         </div>
                         <div class="input-field">
-                            <input type="file" name="post_img">
+                            <label for="slug">Slug</label>
+                            <input type="text" name="slug" placeholder="Slug/url*" aria-required="true"
+                                   required max="100" id="slug"/>
+                        </div>
+                        <div class="input-field">
+                            <label for="image">Feature Image</label>
+                            <input type="file" name="post_img" id="image">
                         </div>
 
                         <div class="input-field">
+                            <label for="post_desc">Post body</label>
                             <textarea name="details" rows="20" placeholder="Post Details *" aria-required="true"
                                       id="post_desc" style="height: auto;"></textarea>
                         </div>

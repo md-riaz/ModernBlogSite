@@ -24,8 +24,14 @@
     </div>
     <div class="subscribe">
         <h3 class="bottom_bar">newshelter</h3>
-        <input type="email" name="email" id="email" placeholder="your email address">
-        <button class="flat-btn">subscribe</button>
+        <form action="{{route('subscribe')}}" method="post">
+            @csrf
+            <input type="email" name="email" id="email" placeholder="your email address">
+            @error('email')
+            <p class="text-danger">{{$message}}</p>
+            @enderror
+            <button type="submit" class="flat-btn">subscribe</button>
+        </form>
     </div>
     <div class="follow_insta">
         <h3 class="bottom_bar">follow@md_riaz___</h3>
@@ -44,9 +50,9 @@
     <div class="category_section">
         <h3 class="bottom_bar">categories</h3>
         <ul>
-            @foreach (App\Category::all() as $category)
+            @foreach ($categories as $category)
                 <li class="menu-item"><a href="{{url('/categories/'.$category->slug)}}">{{ $category->name }}</a>
-                    <span></span></li>
+                    <span>{{count($category->posts)}}</span></li> <!-- count how many post in a category -->
             @endforeach
         </ul>
     </div>
@@ -54,7 +60,7 @@
         <h3 class="bottom_bar">recent posts</h3>
 
         <div class="latest_post_wrapper">
-            @foreach (App\Post::take(5)->latest('created_at')->get() as $item)
+            @foreach ($latest as $item)
                 <div class="latest_post d_flex">
                     <div class="latest_post_preview_img">
                         <img src="{{ asset($item->post_img)}}" alt="preview_img">

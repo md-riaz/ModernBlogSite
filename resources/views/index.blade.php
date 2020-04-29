@@ -1,46 +1,6 @@
 @extends('layouts.layout')
 @section('title' ,'larablog | A laravel blog')
 
-@section('FeaturePost')
-
-<!--   Feature Post Section -->
-<section class="feature-posts">
-    <div class="feature-posts_wrapper d_flex feature-post-slider owl-carousel owl-theme">
-
-        @forelse (App\Post::latest('updated_at')->take(6)->get() as $item)
-
-
-        <div class="feature-post d_flex item owl-lazy" data-src="{{asset($item->post_img)}}">
-            <span class="overlay"></span>
-            <div class="feature-post_content d_flex">
-                <div class="categories d_flex">
-                    <a href="{{url('/categories/'.$item->category->slug)}}">{{$item->category->name}}</a>
-                </div>
-                <a class="title" href="{{ url('post/'. $item->id) }}">
-                    {{$item->title}}
-                </a>
-                <div class="post_bottom d_flex">
-                    <p class="date">{{$item->created_at->format('d F, Y')}}</p>
-                    <div class="comments d_flex">
-                        <i class="fas fa-comment"></i>
-                        <p>24</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        @empty
-        <p>No Post to show</p>
-        @endforelse
-
-
-
-    </div>
-    <div class="btn-prev"></div>
-    <div class="btn-next"></div>
-</section>
-@endsection
-
 @section('content')
 <!--   Main Post Section -->
 <section class="post-list">
@@ -55,7 +15,7 @@
                     <div class="categories d_flex">
                         <a href="{{url('/categories/'.$post->category->slug)}}">{{$post->category->name}}</a>
                     </div>
-                    <a class="title" href="{{ url('post/'. $post->id) }}">
+                    <a class="title" href="{{ url('post/'. $post->slug) }}">
                         {{$post->title}}
                     </a>
                     <div class="info d_flex">
@@ -77,9 +37,10 @@
             </div>
             <div class="post_share">
                 <span>Share</span>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#" onclick="event.preventDefault();copyToClipboard('{{ url('post/'. $post->slug) }}');" id="copy"><i class="far fa-clipboard"></i></a>
+                <input type="text" id="url" value="{{ url('post/'. $post->slug) }}" style="position:absolute;left:99999999px">
             </div>
         </div>
     </div>
@@ -105,3 +66,4 @@
 
 </section>
 @endsection
+
