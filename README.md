@@ -1,3 +1,3 @@
 # ModernBlogSite
 
-[See Live](https://md-riaz.github.io/ModernBlogSite/)
+[See Live](https://modernblog.ml/)
